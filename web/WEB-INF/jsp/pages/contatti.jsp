@@ -71,7 +71,7 @@
                             </td>
                             <td class="mui--appbar-height" align="right">
                                 <%
-                                    if (!session.isNew()) {
+                                    if (null == session.getAttribute("username")) {
                                 %>
                                 <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./sign">SIGN IN</a></button>
                                 <%
@@ -145,7 +145,7 @@
                 <br/><br/><br/>
             </div>
             <%
-                if (!session.isNew()) {
+                if (null != session.getAttribute("username")) {
             %>
             <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
                 <li class="mfb-component__wrap">

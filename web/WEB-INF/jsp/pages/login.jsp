@@ -71,7 +71,7 @@
                             </td>
                             <td class="mui--appbar-height" align="right">
                                 <%
-                                    if (!session.isNew()) {
+                                    if (null == session.getAttribute("username")) {
                                 %>
                                 <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./sign">SIGN IN</a></button>
                                 <%
@@ -88,7 +88,7 @@
 
         <div id="content-wrapper">
             <div class="mui-container-fluid">
-                <%@ page session="true" %>
+                
                 <%
                     String username = request.getParameter("username");
                     session.setAttribute("username", username);
