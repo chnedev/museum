@@ -1,0 +1,92 @@
+a, a:hover, a:active, a:visited{
+  text-decoration: none;
+  color: black;
+}
+
+.darkcolor{
+  background-color: #455A64;
+}
+
+.icon-size-small{
+  font-size: 18px;
+  color:white;
+}
+
+.cover {
+  background: url('../img/cover2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.darker{
+  background-color: #FAFAFA;
+  padding-top: 20px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.margin{
+    margin-left:50px;
+    margin-right: 50px;
+}
+
+.padding{
+    padding-left:50px;
+    padding-right: 50px;
+}
+
+.iconlarger{
+  font-size: 30px;
+}
+
+.iconbig{
+  font-size: 80px;
+}
+
+.black{
+  background-color: #424242;
+  color:white;
+}
+
+.white{
+  color:#424242;
+}
+
+.cover-storia{
+  background: url('../img/cover3.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.cover-map{
+  background: url('../img/cover-map.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 75vh;
+}
+
+.cover-card{
+  background: url('../img/cover-card.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100px;
+  margin:0px;
+}
+
+/**ids*/
+
+#log-in :hover{
+  cursor: pointer;
+}
