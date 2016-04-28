@@ -7,6 +7,7 @@ package com.site;
 
 import CRUD.DAO;
 import PO.*;
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -58,10 +59,10 @@ public class Main {
     @RequestMapping(value = "/pages/login", params = {"username", "password"}, method = RequestMethod.GET)
     public String login(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "password") String password) {
         Utente utente = DAO.getUtente(id);
-        if (utente == null) {
-            map.put("presente", "false");
-        } else {
+        if (utente != null && utente.getPassword().equals(password)) {
             map.put("presente", "true");
+        } else {
+            map.put("presente", "false");
             map.put("user", utente);
         }
         return "pages/login";
@@ -72,13 +73,14 @@ public class Main {
         return "pages/logout";
     }
     
-    /**
-    @RequestMapping(value = "/pages/register", params = {"username", "password"}, method = RequestMethod.GET)
-    public String register(ModelMap map) {
+
+    @RequestMapping(value = "/pages/register", params = {"username","nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
+    public String register(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "nome") String nome, @RequestParam(value = "cognome") String cognome, @RequestParam(value = "email") String email, @RequestParam(value = "dataDiNascita") Date dataDiNascita, @RequestParam(value = "password") String password, @RequestParam(value = "password2") String password2) {
+        DAO.addUtente(id, nome, cognome, email, password, dataDiNascita);
         return "pages/register";
     }
-    * */
-
+    
+    
     @RequestMapping(value = "/pages/acquista", method = RequestMethod.GET)
     public String acquista(ModelMap map) {
         List<Esposizione> esp = DAO.getEsposizioniAv();

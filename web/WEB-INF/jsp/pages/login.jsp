@@ -4,8 +4,27 @@
     Author     : chnedev
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="CRUD.DAO"%>
+<%@page import="PO.Utente"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<c:if test="${presente eq 'true'}">
+    <%
+        String username = request.getParameter("username");
+        session.setAttribute("username", username);
+        Utente user= DAO.getUtente(username);
+        session.setAttribute("username", username);
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("password", user.getPassword());
+        session.setAttribute("nome", user.getNome());
+        session.setAttribute("cognome", user.getCognome());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("dataDiNascita", user.getDataDiNascita());
+    %>
+    <c:redirect url="../index"/>
+</c:if>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -70,15 +89,7 @@
                                 <!--<span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">XXI museum</span>-->
                             </td>
                             <td class="mui--appbar-height" align="right">
-                                <%
-                                    if (null == session.getAttribute("username")) {
-                                %>
                                 <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./sign">SIGN IN</a></button>
-                                <%
-                                } else {
-                                %>                              
-                                <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./logout">LOG OUT</a></button>
-                                <% } %>
                             </td>
                         </tr>
                     </table>
@@ -87,13 +98,12 @@
         </header>
 
         <div id="content-wrapper">
+            <div class="mui--appbar-height"> 
+            </div>
             <div class="mui-container-fluid">
-                
-                <%
-                    String username = request.getParameter("username");
-                    session.setAttribute("username", username);
-                %>
-                <c:redirect url="../index"/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <div class="mui--text-subhead mui--text-center mui--align-middle"><span class="icon ion-sad-outline iconbig"></span><br/><br/>ERRORE DI AUTENTICAZIONE</div>
+
             </div>
         </div>
     </body>
