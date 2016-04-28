@@ -8,7 +8,6 @@ package com.site;
 import CRUD.DAO;
 import PO.*;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,45 +20,70 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class Main {
-    
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public String index(ModelMap map){
-        List<Esposizione> esp= DAO.getEsposizioniAv();
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(ModelMap map) {
+        List<Esposizione> esp = DAO.getEsposizioniAv();
         map.put("esposizioni", esp);
-        int col=2;
-        if(esp.size()%2==1) col=3;
+        int col = 2;
+        if (esp.size() % 2 == 1) {
+            col = 3;
+        }
         map.put("col", col);
         return "index";
     }
-    
-    @RequestMapping(value="/index", method= RequestMethod.GET)
-    public String index2(ModelMap map){
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index2(ModelMap map) {
+        List<Esposizione> esp = DAO.getEsposizioniAv();
+        map.put("esposizioni", esp);
+        int col = 2;
+        if (esp.size() % 2 == 1) {
+            col = 3;
+        }
+        map.put("col", col);
         return "index";
     }
-    
-    @RequestMapping(value="/pages/contatti", method= RequestMethod.GET)
-    public String contatti(ModelMap map){
+
+    @RequestMapping(value = "/pages/contatti", method = RequestMethod.GET)
+    public String contatti(ModelMap map) {
         return "pages/contatti";
     }
-    
-    @RequestMapping(value="/pages/sign", method= RequestMethod.GET)
-    public String sign(ModelMap map){
+
+    @RequestMapping(value = "/pages/sign", method = RequestMethod.GET)
+    public String sign(ModelMap map) {
         return "pages/sign";
     }
-    
-    @RequestMapping(value="/pages/login",params = {"username","password"}, method = RequestMethod.GET)
-    public String login(ModelMap map,@RequestParam(value="username") String id, @RequestParam(value="password") String password){
-        Utente utente=DAO.getUtente(id);
-        if(utente==null) map.put("presente", "false");
-        else{
+
+    @RequestMapping(value = "/pages/login", params = {"username", "password"}, method = RequestMethod.GET)
+    public String login(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "password") String password) {
+        Utente utente = DAO.getUtente(id);
+        if (utente == null) {
+            map.put("presente", "false");
+        } else {
             map.put("presente", "true");
             map.put("user", utente);
         }
         return "pages/login";
     }
-    
-    @RequestMapping(value="/pages/logout", method= RequestMethod.GET)
-    public String logout(ModelMap map){
+
+    @RequestMapping(value = "/pages/logout", method = RequestMethod.GET)
+    public String logout(ModelMap map) {
         return "pages/logout";
     }
+    
+    /**
+    @RequestMapping(value = "/pages/register", params = {"username", "password"}, method = RequestMethod.GET)
+    public String register(ModelMap map) {
+        return "pages/register";
+    }
+    * */
+
+    @RequestMapping(value = "/pages/acquista", method = RequestMethod.GET)
+    public String acquista(ModelMap map) {
+        List<Esposizione> esp = DAO.getEsposizioniAv();
+        map.put("esposizioni", esp);
+        return "pages/acquista";
+    }
+
 }
