@@ -70,15 +70,7 @@
                                 <!--<span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">XXI museum</span>-->
                             </td>
                             <td class="mui--appbar-height" align="right">
-                                <%
-                                    if (null == session.getAttribute("username")) {
-                                %>
-                                <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./pages/sign">SIGN IN</a></button>
-                                <%
-                                } else {
-                                %>                              
-                                <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./pages/logout">LOG OUT</a></button>
-                                <% } %>
+                                <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./sign">SIGN IN</a></button>
                             </td>
                         </tr>
                     </table>
@@ -116,7 +108,7 @@
                             </div>
 
                             <div class="mui-tabs__pane" id="pane-justified-2">
-                                <form>
+                                <form method="get" action="./register">
                                     <div class="mui-textfield" required>
                                         <input type="text" name="username">
                                         <label>Username</label>
