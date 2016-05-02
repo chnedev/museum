@@ -217,6 +217,7 @@ buttons {
 #sidedrawer i{
   font-size: 24px;
   width: 24px;
+  text-align: center;
 }
 
 #log-in{

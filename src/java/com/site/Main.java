@@ -88,4 +88,8 @@ public class Main {
         return "pages/acquista";
     }
 
+    @RequestMapping(value = "/pages/edit_profile", method = RequestMethod.GET)
+    public String edit_profile(ModelMap map) {
+        return "pages/edit_profile";
+    }
 }

@@ -1,13 +1,13 @@
 <%-- 
-    Document   : acquista
-    Created on : 27-apr-2016, 14.35.54
+    Document   : contatti
+    Created on : 27-apr-2016, 1.01.07
     Author     : chnedev
 --%>
 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,14 +30,8 @@
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
     </head>
+
     <body>
-        <%
-            if (null == session.getAttribute("username")) {
-        %>
-        <c:redirect url="./sign"/>
-        <%
-            }
-        %>
         <div id="sidedrawer" class="mui--no-user-select">
             <%
                 if (null == session.getAttribute("username")) {
@@ -103,40 +97,68 @@
                 </div>
             </div>
         </header>
+
         <div id="content-wrapper">
             <div class="mui--appbar-height">
-            </div>˙
+            </div>
 
             <div class="mui-container-fluid">
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">BIGLIETTERIA ONLINE</div>
+                <div class="mui--text-headline mui--text-center ">CONTATTI</div>
                 <br/>
                 <br/>
             </div>
+            <div class="cover-map"></div>
+            <div class="mui-container-fluid black">
+                <br/><br/>
+                <div class="mui-row">
+                    <div class="mui-col-md-4 mui--text-center">
+                        <i class="icon ion-android-call iconlarger"></i><br/><br/>
+                        <p>+39 000 000 0000</p>
+                        <br/><br/>
 
-            <div class="mui-container-fluid">
-                <div class="mui-panel">
-                    <div class="mui-container-fluid margin">
-                        <table class="mui-table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo di biglietto</th>
-                                    <th>Quantit&agrave;</th>
-                                    <th>---</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Cell 1-1</td>
-                                    <td>Cell 1-2</td>
-                                </tr>
-                                <tr/>
-                            </tbody>
-                        </table>
+                    </div>
+                    <div class="mui-col-md-4 mui--text-center">
+                        <i class="icon ion-map iconlarger"></i><br/><br/>
+                        <p>Via Milano 67<br/>Milano</p>
+                        <br/><br/>
+
+                    </div>
+                    <div class="mui-col-md-4 mui--text-center">
+                        <i class="icon ion-email iconlarger"></i><br/><br/>
+                        <p>info@xxvimuseum.com</p>
+                        <br/><br/>
+
                     </div>
                 </div>
             </div>
-
+            <div class="mui-container-fluid white">
+                <br/><br/>
+                <div class="mui-row">
+                    <div class="mui-col-md-6 mui-col-md-offset-3">
+                        <form>
+                            <legend><i class="icon ion-ios-information-outline iconlarger mui--align-middle"></i>&emsp;RICHIEDI INFORMAZIONI</legend>
+                            <div class="mui-textfield mui-textfield--float-label" required>
+                                <input type="text">
+                                <label>Nome e cognome</label>
+                            </div>
+                            <div class="mui-textfield mui-textfield--float-label" required>
+                                <input type="email">
+                                <label>Email</label>
+                            </div>
+                            <div class="mui-textfield mui-textfield--float-label" required>
+                                <textarea></textarea>
+                                <label>Testo</label>
+                            </div>
+                            <button type="submit" class="mui-btn mui-btn--raised ">INVIA</button>
+                        </form>
+                    </div>
+                </div>
+                <br/><br/><br/>
+            </div>
+            <%
+                if (null != session.getAttribute("username")) {
+            %>
             <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
                 <li class="mfb-component__wrap">
                     <a href="#" class="mfb-component__button--main">
@@ -163,21 +185,24 @@
                     </ul>
                 </li>
             </ul>
+            <% }%>
         </div>
+        
         <script>
-            var modalEl = document.createElement('div');
-            modalEl.style.width = '400px';
-            modalEl.style.margin = '100px auto';
-            modalEl.style.backgroundColor = '#fff';
-            modalEl.className = 'mui-panel padding'
+        var modalEl = document.createElement('div');
+        modalEl.style.width = '400px';
+        modalEl.style.margin = '100px auto';
+        modalEl.style.backgroundColor = '#fff';
+        modalEl.className = 'mui-panel padding'
 
-            var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-            modalEl.innerHTML = loginpanel;    
-            console.log(loginpanel);
-            console.log(modalEl);
-            function activateModal() {
-                mui.overlay('on', modalEl);
-            }
-        </script>
+        var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+        modalEl.innerHTML = loginpanel;    
+        console.log(loginpanel);
+        console.log(modalEl);
+        function activateModal() {
+            mui.overlay('on', modalEl);
+        }
+    </script>
     </body>
 </html>
+
