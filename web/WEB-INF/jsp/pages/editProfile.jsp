@@ -1,32 +1,13 @@
 <%-- 
-    Document   : login
-    Created on : 27-apr-2016, 4.22.26
+    Document   : contatti
+    Created on : 27-apr-2016, 1.01.07
     Author     : chnedev
 --%>
 
-<%@page import="CRUD.DAO"%>
-<%@page import="PO.Utente"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<c:if test="${presente eq 'true'}">
-    <%
-        String username = request.getParameter("username");
-        session.setAttribute("username", username);
-        Utente user = DAO.getUtente(username);
-        session.setAttribute("username", username);
-        session.setAttribute("email", user.getEmail());
-        session.setAttribute("password", user.getPassword());
-        session.setAttribute("nome", user.getNome());
-        session.setAttribute("cognome", user.getCognome());
-        session.setAttribute("email", user.getEmail());
-        session.setAttribute("dataDiNascita", user.getDataDiNascita());
-    %>
-    <c:redirect url="../index"/>
-</c:if>
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,14 +60,10 @@
             <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <%
-                    if (null != session.getAttribute("username")) {
-                %>
                 <a href="./profile"><li><strong><i class="icon ion-person"></i><span class="sidenav-icon-text">Profilo</strong></span></li></a>
                             <a href="./mieiBiglietti"><li><strong><i class="icon ion-pricetags"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></li></a>
                             <a href="./editProfile"><li><strong><i class="icon ion-edit"></i><span class="sidenav-icon-text">Modifica profilo</span></strong></li></a>
                             <div class="mui-divider"></div>
-                            <% } %>
                             <li>
                                 <strong>Il museo</strong>
                                 <ul>
@@ -124,7 +101,7 @@
                                                     } else {
                                                     %>                              
                                                     <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                                    <% }%>
+                                                    <% } %>
                                                 </td>
                                             </tr>
                                         </table>
@@ -133,13 +110,93 @@
                             </header>
 
                             <div id="content-wrapper">
-                                <div class="mui--appbar-height"> 
+                                <div class="mui--appbar-height">
                                 </div>
-                                <div class="mui-container-fluid">
-                                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                    <div class="mui--text-subhead mui--text-center mui--align-middle"><span class="icon ion-sad-outline iconbig"></span><br/><br/>ERRORE DI AUTENTICAZIONE</div>
 
+                                <div class="mui-container-fluid">
+                                    <br/><br/>
+                                    <div class="mui--text-headline mui--text-center ">CONTATTI</div>
+                                    <br/>
+                                    <br/>
                                 </div>
+                                <div class="cover-map"></div>
+                                <div class="mui-container-fluid black">
+                                    <br/><br/>
+                                    <div class="mui-row">
+                                        <div class="mui-col-md-4 mui--text-center">
+                                            <i class="icon ion-android-call iconlarger"></i><br/><br/>
+                                            <p>+39 000 000 0000</p>
+                                            <br/><br/>
+
+                                        </div>
+                                        <div class="mui-col-md-4 mui--text-center">
+                                            <i class="icon ion-map iconlarger"></i><br/><br/>
+                                            <p>Via Milano 67<br/>Milano</p>
+                                            <br/><br/>
+
+                                        </div>
+                                        <div class="mui-col-md-4 mui--text-center">
+                                            <i class="icon ion-email iconlarger"></i><br/><br/>
+                                            <p>info@xxvimuseum.com</p>
+                                            <br/><br/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mui-container-fluid white">
+                                    <br/><br/>
+                                    <div class="mui-row">
+                                        <div class="mui-col-md-6 mui-col-md-offset-3">
+                                            <form>
+                                                <legend><i class="icon ion-ios-information-outline iconlarger mui--align-middle"></i>&emsp;RICHIEDI INFORMAZIONI</legend>
+                                                <div class="mui-textfield mui-textfield--float-label" required>
+                                                    <input type="text">
+                                                    <label>Nome e cognome</label>
+                                                </div>
+                                                <div class="mui-textfield mui-textfield--float-label" required>
+                                                    <input type="email">
+                                                    <label>Email</label>
+                                                </div>
+                                                <div class="mui-textfield mui-textfield--float-label" required>
+                                                    <textarea></textarea>
+                                                    <label>Testo</label>
+                                                </div>
+                                                <button type="submit" class="mui-btn mui-btn--raised ">INVIA</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <br/><br/><br/>
+                                </div>
+                                <%
+                                    if (null != session.getAttribute("username")) {
+                                %>
+                                <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+                                    <li class="mfb-component__wrap">
+                                        <a href="#" class="mfb-component__button--main">
+                                            <i class="mfb-component__main-icon--resting ion-ios-pricetags"></i>
+                                            <i class="mfb-component__main-icon--active ion-close-round"></i>
+                                        </a>
+                                        <ul class="mfb-component__list">
+                                            <li>
+                                                <a href="#" data-mfb-label="Biglietteria" class="mfb-component__button--child">
+                                                    <i class="mfb-component__child-icon ion-ios-pricetag"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-mfb-label="Carello" class="mfb-component__button--child">
+                                                    <i class="mfb-component__child-icon ion-ios-cart"></i>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" data-mfb-label="Profilo" class="mfb-component__button--child">
+                                                    <i class="mfb-component__child-icon ion-android-person"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <% }%>
                             </div>
 
                             <script>
@@ -158,5 +215,5 @@
                                 }
                             </script>
                             </body>
-
                             </html>
+
