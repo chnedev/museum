@@ -28,6 +28,26 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <script src="../resources/js/script.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function (){
+             $(".aggiungi").click(function (){
+                alert($(this).data("titolo")); 
+                $.post("./aggiungiaCarrello",{ prodotto: "test",qnt:"12" });
+             });
+          });
+                function addticket(biglietto) {
+                    alert(biglietto);
+                    var qBiglietto= document.getElementById("qnt"+biglietto);
+                    q = parseInt(qBiglietto);
+                    var qnt=q.innerText +1;
+                    alert(qnt);
+                    qBiglietto.innerHTML= qnt;
+                   
+                    }
+            
+            
+        </script>
     </head>
     <body>
         <%
@@ -97,20 +117,33 @@
             <div class="mui-container-fluid">
                 <div class="mui-panel">
                     <div class="mui-container-fluid margin">
-                        <table class="mui-table">
+                        <table class="mui-table mui-table--bordered">
                             <thead>
                                 <tr>
-                                    <th>Tipo di biglietto</th>
+                                    <th width="30%">Biglietto [per esposizione]</th>
+                                    <th>Data di inizio</th>
+                                    <th>Data di fine</th>
                                     <th>Quantit&agrave;</th>
-                                    <th>---</th>
+                                    <th class="mui--text-right">Aggiungi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Cell 1-1</td>
-                                    <td>Cell 1-2</td>
+                                    <td>Visita normale</td>
+                                    <td>---</td>
+                                    <td>---</td>
+                                    <td id='qNormale'>0</td>
+                                    <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="normal" ><i class="icon ion-plus-round"></i></button></td>
                                 </tr>
-                                <tr/>
+                                <c:forEach items="${esposizioni}" var="esposizione">
+                                    <tr>
+                                        <td>${esposizione.titolo}</td>
+                                        <td>${esposizione.dataDiInizio}</td>
+                                        <td>${esposizione.dataDiFine}</td>
+                                        <td id='q${esposizione.titolo}'>0</td>
+                                        <td class="mui--text-right"s><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="${esposizione.titolo}"><i class="icon ion-plus-round"></i></button></td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

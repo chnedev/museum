@@ -87,5 +87,10 @@ public class Main {
         map.put("esposizioni", esp);
         return "pages/acquista";
     }
+    @RequestMapping(value = "/pages/aggiungiaCarrello", method = RequestMethod.POST)
+    public String acquista(ModelMap map, @RequestParam(value = "prodotto") String prod, @RequestParam(value = "qnt") Integer qnt) {
+       
+        return "pages/acquista";
+    }
 
 }
