@@ -36,8 +36,8 @@ buttons {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
-  left: -200px;
+  width: 320px;
+  left: -320px;
   overflow: auto;
   z-index: 2;
   background-color: #fff;
@@ -63,20 +63,20 @@ buttons {
 
 @media (min-width: 768px) {
   #header {
-    left: 200px;
+    left: 320px;
   }
 
   #sidedrawer {
-    transform: translate(200px);
+    transform: translate(320px);
   }
 
   #content-wrapper {
-    margin-left: 200px;
+    margin-left: 320px;
   }
 
   #footer {
     padding-top: 20px;
-    margin-left: 200px;
+    margin-left: 320px;
   }
 
   body.hide-sidedrawer #header {
@@ -101,7 +101,7 @@ buttons {
  * Toggle Sidedrawer
  */
 #sidedrawer.active {
-  transform: translate(200px);
+  transform: translate(320px);
 }
 
 
@@ -129,12 +129,63 @@ buttons {
 
 
 #sidedrawer-brand {
-  font-family: 'Lekton';
-  padding-left: 20px;
-  font-size: 28px;
   font-weight: 400;
   color: #424242;
+  position: relative;
 }
+    #sidedrawer-brand__title {
+        margin-left: 16px;
+        font-size: 22px;
+        color: gray;
+    }
+
+    #sidedrawer-brand__profile {
+        padding-left: 16px;
+        width: 100%;
+        position: absolute;
+        bottom: 16px;
+    }
+        .sidedrawer-brand__profile__gradient{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: black;
+            opacity: 0.3;
+        }
+        
+        .sidedrawer-brand__profile__propic{
+            height: 64px;
+            width: 64px;
+            background-size: cover;
+            border-radius: 32px;
+        }
+        
+        #sidedrawer-brand__profile p {
+            color: white;
+            line-height: 18px
+        }
+        
+        #sidedrawer-brand__profile h5 {
+            color: white;
+            font-weight: bold;
+            line-height: 18px
+        }
+    
+    #sidedrawer-brand__login {
+        position: absolute;
+        bottom: 0;
+        right: 16px;
+    }
+    
+    .sidedrawer-brand--active{
+        padding-left: 0px;
+        position: relative;
+        background-image: url("https://d13yacurqjgara.cloudfront.net/users/300948/screenshots/2679130/dungeons_dragons_1.jpg");
+        background-size: cover;
+        height: 192px;
+    }
 
 #sidedrawer ul {
   list-style: none;
@@ -152,6 +203,7 @@ buttons {
   display: block;
   padding: 15px 22px;
   cursor: pointer;
+  position: relative;
 }
 
 #sidedrawer strong:hover {
@@ -160,6 +212,12 @@ buttons {
 
 #sidedrawer strong + ul > li {
   padding: 6px 0px;
+}
+
+#sidedrawer i{
+  font-size: 24px;
+  width: 24px;
+  text-align: center;
 }
 
 #log-in{
