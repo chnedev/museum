@@ -7,6 +7,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%if (null == session.getAttribute("qNormale")) {
+        session.setAttribute("qNormale", "0");
+    }%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,25 +32,26 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
-        <script src="../resources/js/script.js"></script>
         <script type="text/javascript">
-          $(document).ready(function (){
-             $(".aggiungi").click(function (){
-                alert($(this).data("titolo")); 
-                $.post("./aggiungiaCarrello",{ prodotto: "test",qnt:"12" });
-             });
-          });
-                function addticket(biglietto) {
-                    alert(biglietto);
-                    var qBiglietto= document.getElementById("qnt"+biglietto);
-                    q = parseInt(qBiglietto);
-                    var qnt=q.innerText +1;
-                    alert(qnt);
-                    qBiglietto.innerHTML= qnt;
-                   
-                    }
-            
-            
+            $(document).ready(function () {
+            $("#qnt").text('<%=session.getAttribute("qNormale")%>');
+                    $(".aggiungi").click(function () {
+            var qnt = $("#qnt").text();
+                    qnt = parseInt(qnt);
+                    qnt = qnt + 1;
+                    $("#qnt").text(qnt);
+            });
+                    $(".carrello").click(function(){
+            '<%
+                if (null == session.getAttribute("qNormale")) {
+                    session.setAttribute("qNormale", "1");
+                } else {
+                    Object qtemp = session.getAttribute("qNormale");
+                    Integer q = (Integer) qtemp;
+                    session.setAttribute("qNormale", q);
+                }
+            %>';
+            });
         </script>
     </head>
     <body>
@@ -66,7 +70,7 @@
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
             </div>
             <%
-                } else {
+            } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
@@ -77,7 +81,9 @@
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
+                        <p><% if (session.getAttribute("email") != null) {
+                                out.print(session.getAttribute("email"));
+                            } %></p>
                     </div>
                 </div>
             </div>
@@ -101,7 +107,7 @@
                     <strong>La biglietteria</strong>
                     <ul>
                         <li><a href="./acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
-                        <li><a href="./acquista"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
+                        <li><a href="./acquistaEventi"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -125,7 +131,7 @@
                                 } else {
                                 %>                              
                                 <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                <% } %>
+                                <% }%>
                             </td>
                         </tr>
                     </table>
@@ -149,9 +155,7 @@
                         <table class="mui-table mui-table--bordered">
                             <thead>
                                 <tr>
-                                    <th width="30%">Biglietto [per esposizione]</th>
-                                    <th>Data di inizio</th>
-                                    <th>Data di fine</th>
+                                    <th width="30%">Biglietto</th>
                                     <th>Quantit&agrave;</th>
                                     <th class="mui--text-right">Aggiungi</th>
                                 </tr>
@@ -159,20 +163,9 @@
                             <tbody>
                                 <tr>
                                     <td>Visita normale</td>
-                                    <td>---</td>
-                                    <td>---</td>
-                                    <td id='qNormale'>0</td>
-                                    <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="normal" ><i class="icon ion-plus-round"></i></button></td>
+                                    <td><span id="qnt"><c:out value="${session.getAttribute('qNormale')}"/></span></td>
+                                    <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
                                 </tr>
-                                <c:forEach items="${esposizioni}" var="esposizione">
-                                    <tr>
-                                        <td>${esposizione.titolo}</td>
-                                        <td>${esposizione.dataDiInizio}</td>
-                                        <td>${esposizione.dataDiFine}</td>
-                                        <td id='q${esposizione.titolo}'>0</td>
-                                        <td class="mui--text-right"s><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="${esposizione.titolo}"><i class="icon ion-plus-round"></i></button></td>
-                                    </tr>
-                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -207,19 +200,19 @@
             </ul>
         </div>
         <script>
-            var modalEl = document.createElement('div');
-            modalEl.style.width = '400px';
-            modalEl.style.margin = '100px auto';
-            modalEl.style.backgroundColor = '#fff';
-            modalEl.className = 'mui-panel padding'
+                    var modalEl = document.createElement('div');
+                    modalEl.style.width = '400px';
+                    modalEl.style.margin = '100px auto';
+                    modalEl.style.backgroundColor = '#fff';
+                    modalEl.className = 'mui-panel padding'
 
-            var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-            modalEl.innerHTML = loginpanel;    
-            console.log(loginpanel);
-            console.log(modalEl);
-            function activateModal() {
-                mui.overlay('on', modalEl);
-            }
+                    var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+                    modalEl.innerHTML = loginpanel;
+                    console.log(loginpanel);
+                    console.log(modalEl);
+                    function activateModal() {
+                    mui.overlay('on', modalEl);
+                    }
         </script>
     </body>
 </html>
