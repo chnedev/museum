@@ -13,6 +13,7 @@
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
         <!--icons-->
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <!--css-->
         <link href="https://cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" >
         <link href="resources/floating/style.css" rel="stylesheet" type="text/css">
@@ -45,36 +46,25 @@
                         <a href="profile"><img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/></a>
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
-                        <h5> <% out.print(session.getAttribute("username")); %> </h5>
-                        <p><% if(session.getAttribute("username") == null) out.print(session.getAttribute("username")); %></p>
+                        <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
+                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
                     </div>
                 </div>
             </div>
             <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <li>
-                    <strong>ll XXI museum</strong>
-                    <ul>
-                        <li><a href="./pages/storia">La storia</a></li>
-                        <li><a href="./pages/collezioni">Le collezioni</a></li>
-                        <li><a href="./pages/progetti">Progetti</a></li>
-                        <li><a href="./pages/mission">Mission</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Visitare il museo</strong>
-                    <ul>
-                        <li><a href="./pages/orari">Orari e biglietti</a></li>
-                        <li><a href="./pages/esposizioni">Mostre ed eventi</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="./pages/acquista"><strong>Acquista biglietto</strong></a>
-                </li>
-                <li>
-                    <a href="./pages/contatti"><strong>Contatti</strong></a>
-                </li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-user" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
+                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-calendar-o" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
+                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-book" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-clock-o" aria-hidden="true"></i><span class="sidenav-icon-text">Gli orari</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
+                <li><a href="./pages/acquista"><strong><i class="fa fa-envelope" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
         <header id="header">
@@ -91,11 +81,11 @@
                                 <%
                                     if (null == session.getAttribute("username")) {
                                 %>
-                                <button class="mui-btn mui-btn--small mui-btn--flat" onclick="activateModal()">SIGN IN</button>
+                                <button class="mui-btn mui-btn--primary" onclick="activateModal()">SIGN IN</button>
                                 <%
                                 } else {
                                 %>                              
-                                <button class="mui-btn mui-btn--small mui-btn--flat"><a href="./pages/logout">LOG OUT</a></button>
+                                <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./pages/logout">LOG OUT</a></button>
                                 <% } %>
                             </td>
                         </tr>

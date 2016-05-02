@@ -129,17 +129,18 @@ buttons {
 
 
 #sidedrawer-brand {
-  padding-left: 16px;
   font-weight: 400;
   color: #424242;
   position: relative;
 }
     #sidedrawer-brand__title {
+        margin-left: 16px;
         font-size: 22px;
         color: gray;
     }
 
     #sidedrawer-brand__profile {
+        padding-left: 16px;
         width: 100%;
         position: absolute;
         bottom: 16px;
@@ -202,6 +203,7 @@ buttons {
   display: block;
   padding: 15px 22px;
   cursor: pointer;
+  position: relative;
 }
 
 #sidedrawer strong:hover {
@@ -210,6 +212,11 @@ buttons {
 
 #sidedrawer strong + ul > li {
   padding: 6px 0px;
+}
+
+#sidedrawer i{
+  font-size: 24px;
+  width: 24px;
 }
 
 #log-in{
