@@ -35,11 +35,12 @@
         <script type="text/javascript">
             $(document).ready(function () {
             $("#qnt").text('<%=session.getAttribute("qNormale")%>');
-                    $(".aggiungi").click(function () {
-            var qnt = $("#qnt").text();
+                $(".aggiungi").click(function () {
+                    var qnt = $("#qnt").text();
                     qnt = parseInt(qnt);
                     qnt = qnt + 1;
                     $("#qnt").text(qnt);
+                    var tmpText="<tr></tr>";
             });
                     $(".carrello").click(function(){
             '<%
@@ -166,6 +167,7 @@
                                     <td><span id="qnt"><c:out value="${session.getAttribute('qNormale')}"/></span></td>
                                     <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
                                 </tr>
+                            <div id="opzioni"></div>
                             </tbody>
                         </table>
                     </div>
