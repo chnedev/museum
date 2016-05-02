@@ -7,6 +7,7 @@ package com.site;
 
 import CRUD.DAO;
 import PO.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class Main {
+    
+    private ArrayList<Biglietto> biglietti;
+    
+    public Main(){
+        biglietti=new ArrayList<>();
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap map) {
@@ -83,13 +90,6 @@ public class Main {
     
     @RequestMapping(value = "/pages/acquista", method = RequestMethod.GET)
     public String acquista(ModelMap map) {
-        List<Esposizione> esp = DAO.getEsposizioniAv();
-        map.put("esposizioni", esp);
-        return "pages/acquista";
-    }
-    @RequestMapping(value = "/pages/aggiungiaCarrello", method = RequestMethod.POST)
-    public String acquista(ModelMap map, @RequestParam(value = "prodotto") String prod, @RequestParam(value = "qnt") Integer qnt) {
-       
         return "pages/acquista";
     }
 
