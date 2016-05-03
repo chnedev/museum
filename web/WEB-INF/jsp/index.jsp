@@ -36,35 +36,41 @@
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
             </div>
             <%
-                } else {
+            } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
                 <div class="sidedrawer-brand__profile__gradient"></div>
                 <div id="sidedrawer-brand__profile" class="mui-row">
                     <div class="mui-col-xs-4 mui-col-md-3">
-                        <a href="profile"><img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/></a>
+                        <img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/>
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
+                        <p><% if (session.getAttribute("email") != null) {
+                                out.print(session.getAttribute("email"));
+                            } %></p>
                     </div>
                 </div>
             </div>
             <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <li><a href="./pages/profilo"><strong><i class="fa fa-user" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
-                <li><a href="./pages/my_tickets"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
-                <li><a href="./pages/edit_profile"><strong><i class="fa fa-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
+                <%
+                    if (null != session.getAttribute("username")) {
+                %>
+                <li><a href="./pages/profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
+                <li><a href="./pages/my_tickets"><strong><i class="icon ion-pricetags" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
+                <li><a href="./pages/editProfile"><strong><i class="icon ion-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
+                <% } %>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
-                <li><a href="./pages/biglietto_normale"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
-                <li><a href="./pages/eventi"><strong><i class="fa fa-calendar-o" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
+                <li><a href="./pages/biglietto_normale"><strong><i class="icon ion-pricetag" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
+                <li><a href="./pages/eventi"><strong><i class="icon ion-android-calendar" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
-                <li><a href="./pages/storia"><strong><i class="fa fa-book" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
-                <li><a href="./pages/orari"><strong><i class="fa fa-clock-o" aria-hidden="true"></i><span class="sidenav-icon-text">Gli orari</span></strong></a></li>
+                <li><a href="./pages/storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
+                <li><a href="./pages/orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
                 <li><a href="./pages/team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
-                <li><a href="./pages/contatti"><strong><i class="fa fa-envelope" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
+                <li><a href="./pages/contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
         <header id="header">
@@ -186,17 +192,17 @@
             <% }%>
         </div>
     </body>
-    
+
     <script>
         var modalEl = document.createElement('div');
-    modalEl.style.width = '400px';
-    modalEl.style.margin = '100px auto';
-    modalEl.style.backgroundColor = '#fff';
-    modalEl.className = 'mui-panel padding'
-        
-        var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./pages/login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-    modalEl.innerHTML = loginpanel;    
-    console.log(loginpanel);
+        modalEl.style.width = '400px';
+        modalEl.style.margin = '100px auto';
+        modalEl.style.backgroundColor = '#fff';
+        modalEl.className = 'mui-panel padding'
+
+        var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./pages/login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+        modalEl.innerHTML = loginpanel;
+        console.log(loginpanel);
         console.log(modalEl);
         function activateModal() {
             mui.overlay('on', modalEl);

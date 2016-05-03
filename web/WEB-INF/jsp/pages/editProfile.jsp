@@ -47,7 +47,7 @@
                 <div class="sidedrawer-brand__profile__gradient"></div>
                 <div id="sidedrawer-brand__profile" class="mui-row">
                     <div class="mui-col-xs-4 mui-col-md-3">
-                        <img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/>
+                        <a href="profile"><img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/></a>
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
@@ -105,38 +105,75 @@
         <div id="content-wrapper">
             <div class="mui--appbar-height"></div>
 
-            <div class="padding-container">
-                <div class="propic-wrapper">
-                        <img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
-                        <a href="./editProfile" class="mui-btn mui-btn--fab mui-btn--danger edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
+            <div class="padding-container propic-wrapper">
+                <div class="mui-col-xs-12 mui-col-md-4">
+                    <img class="propic-large" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
+                    <h3><% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %></h3>
+                    <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
                 </div>
-                <div class="mui-panel profile-wrapper">
-                    <h2>Ayoub Aabass</h2>
-                    <p>aabass.ayoub@gmail.com</p>
-                    <p><% 
-                        String data = session.getAttribute("dataDiNascita").toString();
-                        data = data.substring(0, 10);
-                        out.print(data); 
-                    %></p>
+                <div class="mui-col-xs-12 mui-col-md-8 mui-panel edit-profile-wrapper">
+                    <form name="editInfoForm" onSubmit="return checkPwd()" method="get" action="./editInfo">
+                        <legend>Modifica Profilo</legend>
+                        <div class="mui-textfield mui-textfield--float-label">
+                            <input name="email" type="email" value="<% out.print(session.getAttribute("email")); %>" required>
+                            <label>Email</label>
+                        </div>
+                        <!--<div class="mui-textfield mui-textfield--float-label">
+                            <input name="propic" type="url" value="<% out.print(session.getAttribute("propic")); %>" required>
+                            <label>Link foto profilo</label>
+                        </div>
+                        <div class="mui-textfield mui-textfield--float-label">
+                            <input name="cover" type="url" value="<% out.print(session.getAttribute("cover")); %>" required>
+                            <label>Link foto copertina</label>
+                        </div>-->
+                        <div class="mui-textfield mui-textfield--float-label">
+                            <input name="password" type="password">
+                            <label>Nuova password</label>
+                        </div>
+                        <div class="mui-textfield mui-textfield--float-label">
+                            <input name="confirmPassword" type="password">
+                            <label>Ripeti password</label>
+                        </div>
+                    
+                        <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
         
         <script>
-        var modalEl = document.createElement('div');
-        modalEl.style.width = '400px';
-        modalEl.style.margin = '100px auto';
-        modalEl.style.backgroundColor = '#fff';
-        modalEl.className = 'mui-panel padding'
+            var modalEl = document.createElement('div');
+            modalEl.style.width = '400px';
+            modalEl.style.margin = '100px auto';
+            modalEl.style.backgroundColor = '#fff';
+            modalEl.className = 'mui-panel padding'
 
-        var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-        modalEl.innerHTML = loginpanel;    
-        console.log(loginpanel);
-        console.log(modalEl);
-        function activateModal() {
-            mui.overlay('on', modalEl);
-        }
-    </script>
+            var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+            modalEl.innerHTML = loginpanel;    
+            console.log(loginpanel);
+            console.log(modalEl);
+            function activateModal() {
+                mui.overlay('on', modalEl);
+            }
+            
+            function checkPwd(){
+                pwd1 = $('input[name=password]').val();
+                pwd2 = $('input[name=confirmPassword]').val();
+                if(pwd1 == pwd2){
+                    return true;
+                }
+                else{
+                    var pwdModal = document.createElement('div');
+                    pwdModal.style.width = '400px';
+                    pwdModal.style.margin = '100px auto';
+                    pwdModal.style.backgroundColor = '#fff';
+                    pwdModal.className = 'mui-panel padding'
+                    pwdModal.innerHTML = '<h3>Le password non corrispondono!</h3>'
+                    mui.overlay('on', pwdModal);
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>
 

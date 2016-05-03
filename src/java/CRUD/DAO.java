@@ -123,6 +123,17 @@ public class DAO{
         return 0;
     }
     
+    public static List<Biglietto> getUserBiglietti(String id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql="FROM Biglietto GROUP BY IdVisitatore :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id",id);
+        List<Biglietto> lista= query.list();
+        return lista;
+        
+    }
+    
     // Interazione con la tabella Utenti
     
     
@@ -160,19 +171,16 @@ public class DAO{
     
     
 
-    public static int updateUtente(String id, String nome, String cognome, String email, String password, Date dataDiNascita){
+    public static int updateUtente(String id, String email, String password){
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession(); 
         Transaction tx = session.beginTransaction();
         try{
-        String hql="UPDATE Utente SET Id= :id, Nome= :nome, Cognome= :cognome, Email= :email, Password= :password, DataDiNascita= :dataDiNascita WHERE Id= :id";
+        String hql="UPDATE Utente SET Email= :email, Password= :password WHERE Id= :id";
         Query query = session.createQuery(hql);
         query.setParameter("id",id);
-        query.setParameter("nome",nome);
-        query.setParameter("cognome",cognome);
         query.setParameter("email",email);
         query.setParameter("password",password);
-        query.setParameter("dataDiNascita",dataDiNascita);
         return query.executeUpdate();
         }  
         catch(Exception ex){tx.rollback();}

@@ -100,9 +100,9 @@ a, a:hover, a:active, a:visited{
 /*Sidenav*/
 
 .sidenav-disabled{
+    height: 56px;
     font-weight: 100;
     cursor: auto !important;
-    height: 56px;
 }
 
 .sidenav-disabled:hover{
@@ -111,14 +111,16 @@ a, a:hover, a:active, a:visited{
 
 .sidenav-icon-text{
     position: absolute;
-    top: 19px;
-    margin-left: 16px;
+    margin-left: 24px;
+    top: 20px;
 }
 
 /*Profile*/
 .propic-wrapper{
+    position: relative;
     text-align: center;
 }
+
 .propic{
     height: 128px;
     width: 128px;
@@ -139,9 +141,17 @@ a, a:hover, a:active, a:visited{
 
 .profile-wrapper{
     margin-top: -64px;
-    padding-top: 80px;
+    padding-top: 64px;
+    text-align: center;
 }
 
 .edit-profile-wrapper{
     text-align: left;
+}
+
+.edit-profile-fab{
+    color: #fff !important;
+    position: absolute;
+    top: 32px;
+    margin-left: 32px;
 }

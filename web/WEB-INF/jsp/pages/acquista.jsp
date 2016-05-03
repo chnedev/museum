@@ -7,6 +7,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%if (null == session.getAttribute("qNormale")) {
+        session.setAttribute("qNormale", "0");
+    }%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,6 +32,28 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+            $("#qnt").text('<%=session.getAttribute("qNormale")%>');
+                $(".aggiungi").click(function () {
+                    var qnt = $("#qnt").text();
+                    qnt = parseInt(qnt);
+                    qnt = qnt + 1;
+                    $("#qnt").text(qnt);
+                    var tmpText="<tr></tr>";
+            });
+                    $(".carrello").click(function(){
+            '<%
+                if (null == session.getAttribute("qNormale")) {
+                    session.setAttribute("qNormale", "1");
+                } else {
+                    Object qtemp = session.getAttribute("qNormale");
+                    Integer q = (Integer) qtemp;
+                    session.setAttribute("qNormale", q);
+                }
+            %>';
+            });
+        </script>
     </head>
     <body>
         <%
@@ -46,7 +71,7 @@
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
             </div>
             <%
-                } else {
+            } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
@@ -57,24 +82,35 @@
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
+                        <p><% if (session.getAttribute("email") != null) {
+                                out.print(session.getAttribute("email"));
+                            } %></p>
                     </div>
                 </div>
             </div>
             <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <li><a href="./profilo"><strong><i class="fa fa-user" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
-                <li><a href="./my_tickets"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
-                <li><a href="./edit_profile"><strong><i class="fa fa-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
-                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
-                <li><a href="./biglietto_normale"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
-                <li><a href="./eventi"><strong><i class="fa fa-calendar-o" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
-                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
-                <li><a href="./storia"><strong><i class="fa fa-book" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
-                <li><a href="./orari"><strong><i class="fa fa-clock-o" aria-hidden="true"></i><span class="sidenav-icon-text">Gli orari</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
-                <li><a href="./contatti"><strong><i class="fa fa-envelope" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
+                <a href="./profile"><li><strong><i class="icon ion-person"></i><span class="sidenav-icon-text">Profilo</strong></span></li></a>
+                <a href="./mieiBiglietti"><li><strong><i class="icon ion-pricetags"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></li></a>
+                <a href="./editProfile"><li><strong><i class="icon ion-edit"></i><span class="sidenav-icon-text">Modifica profilo</span></strong></li></a>
+                <div class="mui-divider"></div>
+                <li>
+                    <strong>Il museo</strong>
+                    <ul>
+                        <li><a href="./storia"><i class="icon ion-ios-pulse-strong"></i><span class="sidenav-icon-text">La storia</span></a></li>
+                        <li><a href="./eventi"><i class="icon ion-easel"></i><span class="sidenav-icon-text">Eventi ed esposizioni</span></a></li>
+                        <li><a href="./orari"><i class="icon ion-clock"></i><span class="sidenav-icon-text">Gli orari</span></a></li>
+                        <li><a href="./contatti"><i class="icon ion-android-chat"></i><span class="sidenav-icon-text">Contatti</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>La biglietteria</strong>
+                    <ul>
+                        <li><a href="./acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
+                        <li><a href="./acquistaEventi"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <header id="header">
@@ -96,7 +132,7 @@
                                 } else {
                                 %>                              
                                 <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                <% } %>
+                                <% }%>
                             </td>
                         </tr>
                     </table>
@@ -117,20 +153,21 @@
             <div class="mui-container-fluid">
                 <div class="mui-panel">
                     <div class="mui-container-fluid margin">
-                        <table class="mui-table">
+                        <table class="mui-table mui-table--bordered">
                             <thead>
                                 <tr>
-                                    <th>Tipo di biglietto</th>
+                                    <th width="30%">Biglietto</th>
                                     <th>Quantit&agrave;</th>
-                                    <th>---</th>
+                                    <th class="mui--text-right">Aggiungi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Cell 1-1</td>
-                                    <td>Cell 1-2</td>
+                                    <td>Visita normale</td>
+                                    <td><span id="qnt"><c:out value="${session.getAttribute('qNormale')}"/></span></td>
+                                    <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
                                 </tr>
-                                <tr/>
+                            <div id="opzioni"></div>
                             </tbody>
                         </table>
                     </div>
@@ -165,19 +202,19 @@
             </ul>
         </div>
         <script>
-            var modalEl = document.createElement('div');
-            modalEl.style.width = '400px';
-            modalEl.style.margin = '100px auto';
-            modalEl.style.backgroundColor = '#fff';
-            modalEl.className = 'mui-panel padding'
+                    var modalEl = document.createElement('div');
+                    modalEl.style.width = '400px';
+                    modalEl.style.margin = '100px auto';
+                    modalEl.style.backgroundColor = '#fff';
+                    modalEl.className = 'mui-panel padding'
 
-            var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-            modalEl.innerHTML = loginpanel;    
-            console.log(loginpanel);
-            console.log(modalEl);
-            function activateModal() {
-                mui.overlay('on', modalEl);
-            }
+                    var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+                    modalEl.innerHTML = loginpanel;
+                    console.log(loginpanel);
+                    console.log(modalEl);
+                    function activateModal() {
+                    mui.overlay('on', modalEl);
+                    }
         </script>
     </body>
 </html>

@@ -40,7 +40,7 @@
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
             </div>
             <%
-                } else {
+            } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
@@ -51,24 +51,31 @@
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
+                        <p><% if (session.getAttribute("email") != null) {
+                                out.print(session.getAttribute("email"));
+                            } %></p>
                     </div>
                 </div>
             </div>
             <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <li><a href="./profilo"><strong><i class="fa fa-user" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
-                <li><a href="./my_tickets"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
-                <li><a href="./edit_profile"><strong><i class="fa fa-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
-                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
-                <li><a href="./biglietto_normale"><strong><i class="fa fa-ticket" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
-                <li><a href="./eventi"><strong><i class="fa fa-calendar-o" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
-                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
-                <li><a href="./storia"><strong><i class="fa fa-book" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
-                <li><a href="./orari"><strong><i class="fa fa-clock-o" aria-hidden="true"></i><span class="sidenav-icon-text">Gli orari</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
-                <li><a href="./contatti"><strong><i class="fa fa-envelope" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
+                <li>
+                    <strong>Il museo</strong>
+                    <ul>
+                        <li><a href="./storia"><i class="icon ion-ios-pulse-strong"></i><span class="sidenav-icon-text">La storia</span></a></li>
+                        <li><a href="./eventi"><i class="icon ion-easel"></i><span class="sidenav-icon-text">Eventi ed esposizioni</span></a></li>
+                        <li><a href="./orari"><i class="icon ion-clock"></i><span class="sidenav-icon-text">Gli orari</span></a></li>
+                        <li><a href="./contatti"><i class="icon ion-android-chat"></i><span class="sidenav-icon-text">Contatti</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>La biglietteria</strong>
+                    <ul>
+                        <li><a href="./acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
+                        <li><a href="./acquista"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <header id="header">
@@ -90,7 +97,7 @@
                                 } else {
                                 %>                              
                                 <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                <% } %>
+                                <% }%>
                             </td>
                         </tr>
                     </table>
