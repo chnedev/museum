@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class Main {
-    
+
     private String user;
-    
-    public Main(){
-        user="";
+
+    public Main() {
+        user = "";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -66,7 +66,7 @@ public class Main {
     @RequestMapping(value = "/pages/login", params = {"username", "password"}, method = RequestMethod.GET)
     public String login(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "password") String password) {
         Utente utente = DAO.getUtente(id);
-        user=id;
+        user = id;
         if (utente != null && utente.getPassword().equals(password)) {
             map.put("presente", "true");
         } else {
@@ -75,29 +75,34 @@ public class Main {
         }
         return "pages/login";
     }
-    
-    
+
     @RequestMapping(value = "/pages/orari", method = RequestMethod.GET)
     public String orari(ModelMap map) {
+        List<Categoria> cat = DAO.getCategorie();
+        map.put("categorie", cat);
         return "pages/orari";
     }
-    
-    
+
     @RequestMapping(value = "/pages/logout", method = RequestMethod.GET)
     public String logout(ModelMap map) {
+        user = "";
         return "pages/logout";
     }
-    
 
-    @RequestMapping(value = "/pages/register", params = {"username","nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
-    public String register(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "nome") String nome, @RequestParam(value = "cognome") String cognome, @RequestParam(value = "email") String email, @RequestParam(value = "dataDiNascita") Date dataDiNascita, @RequestParam(value = "password") String password, @RequestParam(value = "password2") String password2) {
-        DAO.addUtente(id, nome, cognome, email, password, dataDiNascita);
-        return "pages/register";
+    @RequestMapping(value = "/pages/registrazione", params = {"username", "nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
+    public String registrazione(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "nome") String nome,@RequestParam(value = "cognome") String cognome, @RequestParam(value = "email") String email, @RequestParam(value = "dataDiNascita") Date dataDiNascita, @RequestParam(value = "password") String password, @RequestParam(value = "password2") String password2) {
+        int tmp = DAO.addUtente(id, nome, cognome, email, password, dataDiNascita);
+        if(tmp==0)return "pages/index";
+        Utente u=DAO.getUtente(id);
+        user = id;
+        map.put("user", u);
+        return "pages/registrazione";
     }
-    
-    
+
     @RequestMapping(value = "/pages/acquista", method = RequestMethod.GET)
     public String acquista(ModelMap map) {
+        List<Categoria> cat = DAO.getCategorie();
+        map.put("categorie", cat);
         return "pages/acquista";
     }
 
@@ -105,10 +110,10 @@ public class Main {
     public String edit_profile(ModelMap map) {
         return "pages/editProfile";
     }
-    
+
     @RequestMapping(value = "/pages/eventi", method = RequestMethod.GET)
-    public String eventi(ModelMap map){
-    List<Esposizione> esp = DAO.getEsposizioniAv();
+    public String eventi(ModelMap map) {
+        List<Esposizione> esp = DAO.getEsposizioniAv();
         map.put("esposizioni", esp);
         int col = 2;
         if (esp.size() % 2 == 1) {
@@ -117,9 +122,9 @@ public class Main {
         map.put("col", col);
         return "pages/eventi";
     }
-    
-    @RequestMapping(value = "/pagesmieiBiglietti", method = RequestMethod.GET)
-    public String mieiBiglietti(ModelMap map){
+
+    @RequestMapping(value = "/pages/mieiBiglietti", method = RequestMethod.GET)
+    public String mieiBiglietti(ModelMap map) {
         List<Biglietto> bigl = DAO.getUserBiglietti(user);
         map.put("biglietti", bigl);
         int col = 2;

@@ -14,7 +14,6 @@
         String username = request.getParameter("username");
         session.setAttribute("username", username);
         Utente user = DAO.getUtente(username);
-        session.setAttribute("username", username);
         session.setAttribute("email", user.getEmail());
         session.setAttribute("password", user.getPassword());
         session.setAttribute("nome", user.getNome());

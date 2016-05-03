@@ -156,6 +156,32 @@
                     <br/><br/>
                 </div>
             </div>
+            <div class="mui-container-fluid padding">
+                <br/><br/>
+                <div class="mui--text-headline mui--text-center ">CATEGORIE SPECIALI</div>
+                <br/>
+                <table class="mui-table mui-table--bordered">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Descrizione</th>
+                            <th>Documento da presentare</th>
+                            <th>Sconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${categorie}" var="categorie">
+                            <tr>
+                                <td>${categorie.codice}</td>
+                                <td>${categorie.descrizione}</td>
+                                <td>${categorie.documento}</td>
+                                <td>${categorie.sconto}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <br/><br/>
+            </div>
         </div>
         <%
             if (null != session.getAttribute("username")) {
