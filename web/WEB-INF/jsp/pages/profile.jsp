@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 
@@ -41,20 +40,18 @@
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
             </div>
             <%
-            } else {
+                } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
                 <div class="sidedrawer-brand__profile__gradient"></div>
                 <div id="sidedrawer-brand__profile" class="mui-row">
                     <div class="mui-col-xs-4 mui-col-md-3">
-                        <a href="profile"><img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/></a>
+                        <img class="sidedrawer-brand__profile__propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1913240/avatar-creator-2.0-process.gif"/>
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if (session.getAttribute("email") != null) {
-                                out.print(session.getAttribute("email"));
-                            } %></p>
+                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
                     </div>
                 </div>
             </div>
@@ -106,88 +103,40 @@
         </header>
 
         <div id="content-wrapper">
-            <div class="mui--appbar-height">
-            </div>
-            <div class="mui-container-fluid">
-                <br/><br/>
-                <div class="mui--text-headline mui--text-center ">ESPOSIZIONI IN CORSO O FUTURE</div>
-                <br/>
-                <br/>
-                <div class="mui-containet-fluid margin">
-                    <div class="mui-row">
-                        <c:forEach items="${esposizioni}" var="esposizione">
-                            <c:if test="${col == 3}">
-                                <div class="mui-col-md-4">
-                                </c:if>
-                                <c:if test="${col == 2}">
-                                    <div class="mui-col-md-6">
-                                    </c:if>
-                                    <div class="cover-card mui--z1"></div> <br/>
-                                    <div class="mui-panel white mui--z2">
-                                        <div class="mui-container-fluid">
-                                            <div class="mui--text-title mui--text-center uppercase">${esposizione.titolo}</div><br/>
-                                            <div class="mui-divider"></div><br/>
-                                            <div class="card-date mui--text-center">dal ${esposizione.dataDiInizio} al ${esposizione.dataDiFine}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                        <br/><br/>
-                    </div>
+            <div class="mui--appbar-height"></div>
+
+            <div class="padding-container">
+                <div class="propic-wrapper">
+                        <img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
+                        <a href="./editProfile" class="mui-btn mui-btn--fab mui-btn--danger edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
                 </div>
-                <div class="mui-container-fluid">
-                    <br/><br/>
+                <div class="mui-panel profile-wrapper">
+                    <h2>Ayoub Aabass</h2>
+                    <p>aabass.ayoub@gmail.com</p>
+                    <p><% 
+                        String data = session.getAttribute("dataDiNascita").toString();
+                        data = data.substring(0, 10);
+                        out.print(data); 
+                    %></p>
                 </div>
             </div>
         </div>
-        <%
-            if (null != session.getAttribute("username")) {
-        %>
-        <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-            <li class="mfb-component__wrap">
-                <a href="#" class="mfb-component__button--main">
-                    <i class="mfb-component__main-icon--resting ion-ios-pricetags"></i>
-                    <i class="mfb-component__main-icon--active ion-close-round"></i>
-                </a>
-                <ul class="mfb-component__list">
-                    <li>
-                        <a href="#" data-mfb-label="Biglietteria" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-ios-pricetag"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" data-mfb-label="Carello" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-ios-cart"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" data-mfb-label="Profilo" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-android-person"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <% }%>
-    </div>
-
-    <script>
+        
+        <script>
         var modalEl = document.createElement('div');
         modalEl.style.width = '400px';
         modalEl.style.margin = '100px auto';
         modalEl.style.backgroundColor = '#fff';
         modalEl.className = 'mui-panel padding'
 
-        var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-        modalEl.innerHTML = loginpanel;
+        var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+        modalEl.innerHTML = loginpanel;    
         console.log(loginpanel);
         console.log(modalEl);
         function activateModal() {
             mui.overlay('on', modalEl);
         }
     </script>
-</body>
+    </body>
 </html>
 

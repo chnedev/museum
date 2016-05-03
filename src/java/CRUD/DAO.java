@@ -132,9 +132,10 @@ public class DAO {
     public static List<Biglietto> getUserBiglietti(String id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        String hql = "FROM Biglietto GROUP BY IdVisitatore :id";
+        Utente user= DAO.getUtente(id);
+        String hql = "FROM Biglietto WHERE IdVisitatore :user";
         Query query = session.createQuery(hql);
-        query.setParameter("id", id);
+        query.setParameter("user", user);
         List<Biglietto> lista = query.list();
         return lista;
 
@@ -158,6 +159,7 @@ public class DAO {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+
         try {
             Utente tmp = new Utente(id, nome, cognome, email, password, dataDiNascita);
             Integer x = (Integer) session.save(tmp);;
@@ -166,6 +168,23 @@ public class DAO {
         } catch (Exception ex) {
             tx.rollback();
         }
+        sessionFactory.close();
+        return 0;
+    }
+    
+    public static int updateUtente(String id, String email, String password){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        try{
+        String hql="UPDATE Utente SET Email= :email, Password= :password WHERE Id= :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id",id);
+        query.setParameter("email",email);
+        query.setParameter("password",password);
+        return query.executeUpdate();
+        }  
+        catch(Exception ex){tx.rollback();}
         sessionFactory.close();
         return 0;
     }

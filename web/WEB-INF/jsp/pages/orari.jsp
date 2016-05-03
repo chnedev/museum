@@ -64,27 +64,18 @@
                 <%
                     if (null != session.getAttribute("username")) {
                 %>
-                <a href="./profile"><li><strong><i class="icon ion-person"></i><span class="sidenav-icon-text">Profilo</strong></span></li></a>
-                <a href="./mieiBiglietti"><li><strong><i class="icon ion-pricetags"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></li></a>
-                <a href="./editProfile"><li><strong><i class="icon ion-edit"></i><span class="sidenav-icon-text">Modifica profilo</span></strong></li></a>
-                <div class="mui-divider"></div>
-                <% } %>
-                <li>
-                    <strong>Il museo</strong>
-                    <ul>
-                        <li><a href="./storia"><i class="icon ion-ios-pulse-strong"></i><span class="sidenav-icon-text">La storia</span></a></li>
-                        <li><a href="./eventi"><i class="icon ion-easel"></i><span class="sidenav-icon-text">Eventi ed esposizioni</span></a></li>
-                        <li><a href="./orari"><i class="icon ion-clock"></i><span class="sidenav-icon-text">Gli orari</span></a></li>
-                        <li><a href="./contatti"><i class="icon ion-android-chat"></i><span class="sidenav-icon-text">Contatti</span></a></li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>La biglietteria</strong>
-                    <ul>
-                        <li><a href="./acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
-                        <li><a href="./acquista"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
-                    </ul>
-                </li>
+                <li><a href="./profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
+                <li><a href="./my_tickets"><strong><i class="icon ion-pricetags" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
+                <li><a href="./editProfile"><strong><i class="icon ion-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
+                                <% } %>
+                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
+                <li><a href="./biglietto_normale"><strong><i class="icon ion-pricetag" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
+                <li><a href="./eventi"><strong><i class="icon ion-android-calendar" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
+                <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
+                <li><a href="./storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
+                <li><a href="./orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
+                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
+                <li><a href="./contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
         <header id="header">

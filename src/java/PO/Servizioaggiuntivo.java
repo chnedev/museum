@@ -28,8 +28,8 @@ public class Servizioaggiuntivo  implements java.io.Serializable {
      @ManyToMany
      @JoinTable(
      name="APPARTENERE",
-     joinColumns={@JoinColumn(name="CodiceServizioAggiuntivo")},
-     inverseJoinColumns={@JoinColumn(name="CodiceBiglietto")}
+     joinColumns={@JoinColumn(name="codiceServizioAggiuntivo")},
+     inverseJoinColumns={@JoinColumn(name="codiceBiglietto")}
     )
      private Set<Biglietto> biglietti;
 

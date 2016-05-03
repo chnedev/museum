@@ -7,7 +7,6 @@ package com.site;
 
 import CRUD.DAO;
 import PO.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -98,16 +97,27 @@ public class Main {
         map.put("user", u);
         return "pages/registrazione";
     }
-
-    @RequestMapping(value = "/pages/acquista", method = RequestMethod.GET)
-    public String acquista(ModelMap map) {
+    
+    @RequestMapping(value = "/pages/editInfo", params = {"email","password", "confirmPassword"}, method = RequestMethod.GET)
+    public String editInfo(ModelMap map, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword) {
+        return "pages/editInfo";
+    }
+    
+    
+    @RequestMapping(value = "/pages/biglietto_normale", method = RequestMethod.GET)
+    public String biglietto_normale(ModelMap map) {
         List<Categoria> cat = DAO.getCategorie();
         map.put("categorie", cat);
-        return "pages/acquista";
+        return "pages/biglietto_normale";
+    }
+    
+    @RequestMapping(value = "/pages/profile", method = RequestMethod.GET)
+    public String profile(ModelMap map) {
+        return "pages/profile";
     }
 
     @RequestMapping(value = "/pages/editProfile", method = RequestMethod.GET)
-    public String edit_profile(ModelMap map) {
+    public String editProfile(ModelMap map) {
         return "pages/editProfile";
     }
 
@@ -123,8 +133,8 @@ public class Main {
         return "pages/eventi";
     }
 
-    @RequestMapping(value = "/pages/mieiBiglietti", method = RequestMethod.GET)
-    public String mieiBiglietti(ModelMap map) {
+    @RequestMapping(value = "/pages/my_tickets", method = RequestMethod.GET)
+    public String my_tickets(ModelMap map) {
         List<Biglietto> bigl = DAO.getUserBiglietti(user);
         map.put("biglietti", bigl);
         int col = 2;
@@ -132,6 +142,6 @@ public class Main {
             col = 3;
         }
         map.put("col", col);
-        return "pages/mieiBiglietti";
+        return "pages/my_tickets";
     }
 }

@@ -20,7 +20,7 @@
         session.setAttribute("email", user.getEmail());
         session.setAttribute("dataDiNascita", user.getDataDiNascita());
     %>
-    <c:redirect url="../index"/>
+    <c:redirect url="./index"/>
 <!DOCTYPE html>
 
 <head>
