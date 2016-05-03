@@ -2,7 +2,6 @@ package PO;
 // Generated 23-apr-2016 1.33.43 by Hibernate Tools 4.3.1
 
 
-import static java.lang.reflect.Array.set;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Entity;

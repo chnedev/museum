@@ -192,7 +192,7 @@ buttons {
 }
 
 #sidedrawer > ul {
-  padding-left: 0px;
+  padding-left: 10px;
 }
 
 #sidedrawer > ul > li:first-child {

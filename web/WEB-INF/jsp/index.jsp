@@ -64,22 +64,14 @@
                 <a href="./pages/editProfile"><li><strong><i class="icon ion-edit"></i><span class="sidenav-icon-text">Modifica profilo</span></strong></li></a>
                 <div class="mui-divider"></div>
                 <% } %>
-                <li>
-                    <strong>Il museo</strong>
-                    <ul>
-                        <li><a href="./pages/storia"><i class="icon ion-ios-pulse-strong"></i><span class="sidenav-icon-text">La storia</span></a></li>
-                        <li><a href="./pages/eventi"><i class="icon ion-easel"></i><span class="sidenav-icon-text">Eventi ed esposizioni</span></a></li>
-                        <li><a href="./pages/orari"><i class="icon ion-clock"></i><span class="sidenav-icon-text">Gli orari</span></a></li>
-                        <li><a href="./pages/contatti"><i class="icon ion-android-chat"></i><span class="sidenav-icon-text">Contatti</span></a></li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>La biglietteria</strong>
-                    <ul>
-                        <li><a href="./pages/acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
-                        <li><a href="./pages/acquista"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
-                    </ul>
-                </li>
+                <li  class="sidenav-disabled"><strong><span>Il museo</span></strong></li>
+                <li><a href="./pages/storia"><i class="icon ion-ios-pulse-strong"></i><span class="sidenav-icon-text">La storia</span></a></li>
+                <li><a href="./pages/eventi"><i class="icon ion-easel"></i><span class="sidenav-icon-text">Eventi ed esposizioni</span></a></li>
+                <li><a href="./pages/orari"><i class="icon ion-clock"></i><span class="sidenav-icon-text">Gli orari</span></a></li>
+                <li><a href="./pages/contatti"><i class="icon ion-android-chat"></i><span class="sidenav-icon-text">Contatti</span></a></li>
+                <li  class="sidenav-disabled"><strong><span>La biglietteria</span></strong></li>
+                <li><a href="./pages/acquista"><i class="icon ion-pricetag"></i><span class="sidenav-icon-text">Biglietto normale</span></a></li>
+                <li><a href="./pages/acquista"><i class="icon ion-android-calendar"></i><span class="sidenav-icon-text">Biglietto per eventi</span></a></li>
             </ul>
         </div>
         <header id="header">
