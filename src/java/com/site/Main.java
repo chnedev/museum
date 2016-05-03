@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Main {
     
-    private ArrayList<Biglietto> biglietti;
+    private String user;
     
     public Main(){
-        biglietti=new ArrayList<>();
+        user="";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -66,6 +66,7 @@ public class Main {
     @RequestMapping(value = "/pages/login", params = {"username", "password"}, method = RequestMethod.GET)
     public String login(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "password") String password) {
         Utente utente = DAO.getUtente(id);
+        user=id;
         if (utente != null && utente.getPassword().equals(password)) {
             map.put("presente", "true");
         } else {
@@ -96,5 +97,29 @@ public class Main {
     @RequestMapping(value = "/pages/editProfile", method = RequestMethod.GET)
     public String edit_profile(ModelMap map) {
         return "pages/editProfile";
+    }
+    
+    @RequestMapping(value = "/pages/eventi", method = RequestMethod.GET)
+    public String eventi(ModelMap map){
+    List<Esposizione> esp = DAO.getEsposizioniAv();
+        map.put("esposizioni", esp);
+        int col = 2;
+        if (esp.size() % 2 == 1) {
+            col = 3;
+        }
+        map.put("col", col);
+        return "pages/eventi";
+    }
+    
+    @RequestMapping(value = "/pagesmieiBiglietti", method = RequestMethod.GET)
+    public String mieiBiglietti(ModelMap map){
+        List<Biglietto> bigl = DAO.getUserBiglietti(user);
+        map.put("biglietti", bigl);
+        int col = 2;
+        if (bigl.size() % 2 == 1) {
+            col = 3;
+        }
+        map.put("col", col);
+        return "pages/mieiBiglietti";
     }
 }

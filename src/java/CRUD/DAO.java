@@ -123,6 +123,17 @@ public class DAO{
         return 0;
     }
     
+    public static List<Biglietto> getUserBiglietti(String id){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql="FROM Biglietto GROUP BY IdVisitatore :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id",id);
+        List<Biglietto> lista= query.list();
+        return lista;
+        
+    }
+    
     // Interazione con la tabella Utenti
     
     
