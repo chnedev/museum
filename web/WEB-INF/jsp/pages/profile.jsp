@@ -102,26 +102,10 @@
             <div class="mui--appbar-height"></div>
 
             <div class="padding-container propic-wrapper">
-                <div class="mui-col-xs-12 mui-col-md-4">
-                    <a href="profile"><img class="propic-large" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/></a>
-                </div>
-                <div class="mui-col-xs-12 mui-col-md-8 mui-panel edit-profile-wrapper">
-                    <form>
-                    <legend>Modifica Profilo</legend>
-                    <div class="mui-textfield mui-textfield--float-label">
-                        <input type="text">
-                        <label>Username</label>
-                    </div>
-                    <div class="mui-textfield mui-textfield--float-label">
-                        <input type="text" value="Value on load">
-                        <label>Input 2</label>
-                    </div>
-                    <div class="mui-textfield mui-textfield--float-label">
-                        <textarea>Value on load</textarea>
-                        <label>Textarea</label>
-                    </div>
-                        <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
-                    </form>
+                <div><a href="profile"><img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/></a></div>
+                <div class="mui-panel profile-wrapper">
+                    <h2>Ayoub Aabass</h2>
+                    <p>aabass.ayoub@gmail.com</p>
                 </div>
             </div>
         </div>

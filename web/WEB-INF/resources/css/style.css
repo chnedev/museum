@@ -85,6 +85,12 @@ a, a:hover, a:active, a:visited{
   margin:0px;
 }
 
+/*Global*/
+
+.padding-container{
+    padding: 32px;
+}
+
 /**ids*/
 
 #log-in :hover{
@@ -107,4 +113,35 @@ a, a:hover, a:active, a:visited{
     position: absolute;
     top: 19px;
     margin-left: 16px;
+}
+
+/*Profile*/
+.propic-wrapper{
+    text-align: center;
+}
+.propic{
+    height: 128px;
+    width: 128px;
+    background-size: cover;
+    border: solid #fff 6px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.16),0 0 2px 0 rgba(0,0,0,.12);
+    border-radius: 64px;
+}
+
+.propic-large{
+    height: 256px;
+    width: 256px;
+    background-size: cover;
+    border: solid #fff 12px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.16),0 0 2px 0 rgba(0,0,0,.12);
+    border-radius: 128px;
+}
+
+.profile-wrapper{
+    margin-top: -64px;
+    padding-top: 80px;
+}
+
+.edit-profile-wrapper{
+    text-align: left;
 }

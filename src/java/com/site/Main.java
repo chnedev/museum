@@ -87,8 +87,13 @@ public class Main {
         map.put("esposizioni", esp);
         return "pages/acquista";
     }
+    
+    @RequestMapping(value = "/pages/profile", params = {"username","nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
+    public String profile(ModelMap map) {
+        return "pages/profile";
+    }
 
-    @RequestMapping(value = "/pages/edit_profile", method = RequestMethod.GET)
+    @RequestMapping(value = "/pages/edit_profile", params = {"username","nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
     public String edit_profile(ModelMap map) {
         return "pages/edit_profile";
     }
