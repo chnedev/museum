@@ -75,7 +75,14 @@ public class Main {
         }
         return "pages/login";
     }
-
+    
+    
+    @RequestMapping(value = "/pages/orari", method = RequestMethod.GET)
+    public String orari(ModelMap map) {
+        return "pages/orari";
+    }
+    
+    
     @RequestMapping(value = "/pages/logout", method = RequestMethod.GET)
     public String logout(ModelMap map) {
         return "pages/logout";
