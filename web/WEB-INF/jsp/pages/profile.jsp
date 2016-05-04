@@ -4,7 +4,16 @@
     Author     : chnedev
 --%>
 
+<%@page import="java.util.Date"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    if (null == session.getAttribute("username")) {
+%>
+<c:redirect url="./sign"/>
+<%
+    }
+%>
 <!doctype html>
 <html>
 
@@ -32,16 +41,7 @@
     </head>
 
     <body>
-        <div id="sidedrawer" class="mui--no-user-select">
-            <%
-                if (null == session.getAttribute("username")) {
-            %>
-            <div id="sidedrawer-brand" class="mui--appbar-line-height">
-                <a id="sidedrawer-brand__title" href="./">XXI museum</a>
-            </div>
-            <%
-                } else {
-            %>   
+        <div id="sidedrawer" class="mui--no-user-select"> 
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
                 <a id="sidedrawer-brand__title" href="./">XXI museum</a>
                 <div class="sidedrawer-brand__profile__gradient"></div>
@@ -51,20 +51,17 @@
                     </div>
                     <div class="mui-col-xs-7 mui-col-xs-offset-1 mui-col-md-8">
                         <h5> <% out.print(session.getAttribute("nome").toString() + " " + session.getAttribute("cognome").toString()); %> </h5>
-                        <p><% if(session.getAttribute("email") != null) out.print(session.getAttribute("email")); %></p>
+                        <p><% if (session.getAttribute("email") != null) {
+                                out.print(session.getAttribute("email"));
+                            } %></p>
                     </div>
                 </div>
             </div>
-            <% } %>
             <div class="mui-divider"></div>
             <ul>
-                <%
-                    if (null != session.getAttribute("username")) {
-                %>
                 <li><a href="./profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
                 <li><a href="./my_tickets"><strong><i class="icon ion-pricetags" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
                 <li><a href="./editProfile"><strong><i class="icon ion-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
-                <% } %>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
                 <li><a href="./biglietto_normale"><strong><i class="icon ion-pricetag" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
                 <li><a href="./eventi"><strong><i class="icon ion-android-calendar" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
@@ -107,36 +104,52 @@
 
             <div class="padding-container">
                 <div class="propic-wrapper">
-                        <img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
-                        <a href="./editProfile" class="mui-btn mui-btn--fab mui-btn--danger edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
+                    <img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
+                    <a href="./editProfile" class="mui-btn mui-btn--fab mui-btn--danger edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
                 </div>
                 <div class="mui-panel profile-wrapper">
-                    <h2>Ayoub Aabass</h2>
-                    <p>aabass.ayoub@gmail.com</p>
-                    <p><% 
-                        String data = session.getAttribute("dataDiNascita").toString();
-                        data = data.substring(0, 10);
+                    <h2>
+                        <% 
+                        Object nometmp = session.getAttribute("nome");
+                        String nome=(String) nometmp;
+                        Object cognometmp = session.getAttribute("cognome");
+                        String cognome=(String) cognometmp;
+                        out.print(nome+" "+cognome); 
+                        %>
+                    </h2>
+                    <p>
+                        <% 
+                        Object emailtmp = session.getAttribute("email");
+                        String email=(String) emailtmp;
+                        out.print(email); 
+                        %>
+                    </p>
+                    <p>
+                        <% 
+                        Object datatmp = session.getAttribute("dataDiNascita");
+                        Date data= (Date)datatmp;
                         out.print(data); 
-                    %></p>
+                        %>
+                    </p>
                 </div>
             </div>
         </div>
-        
-        <script>
-        var modalEl = document.createElement('div');
-        modalEl.style.width = '400px';
-        modalEl.style.margin = '100px auto';
-        modalEl.style.backgroundColor = '#fff';
-        modalEl.className = 'mui-panel padding'
 
-        var loginpanel='<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
-        modalEl.innerHTML = loginpanel;    
-        console.log(loginpanel);
-        console.log(modalEl);
-        function activateModal() {
-            mui.overlay('on', modalEl);
-        }
-    </script>
+        <script>
+            var modalEl = document.createElement('div');
+            modalEl.style.width = '400px';
+            modalEl.style.margin = '100px auto';
+            modalEl.style.backgroundColor = '#fff';
+            modalEl.className = 'mui-panel padding'
+
+            var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+            modalEl.innerHTML = loginpanel;
+            console.log(loginpanel);
+            console.log(modalEl);
+            function activateModal() {
+                mui.overlay('on', modalEl);
+            }
+        </script>
     </body>
 </html>
 

@@ -7,6 +7,8 @@ package com.site;
 
 import CRUD.DAO;
 import PO.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -75,6 +77,12 @@ public class Main {
         return "pages/login";
     }
 
+    @RequestMapping(value = "/pages/login", method = RequestMethod.GET)
+    public String login(ModelMap map) {
+        map.put("user", user);
+        return "pages/login";
+    }
+
     @RequestMapping(value = "/pages/orari", method = RequestMethod.GET)
     public String orari(ModelMap map) {
         List<Categoria> cat = DAO.getCategorie();
@@ -88,29 +96,47 @@ public class Main {
         return "pages/logout";
     }
 
-    @RequestMapping(value = "/pages/registrazione", params = {"username", "nome","cognome","email","dataDiNascita","password","password2"}, method = RequestMethod.GET)
-    public String registrazione(ModelMap map, @RequestParam(value = "username") String id, @RequestParam(value = "nome") String nome,@RequestParam(value = "cognome") String cognome, @RequestParam(value = "email") String email, @RequestParam(value = "dataDiNascita") Date dataDiNascita, @RequestParam(value = "password") String password, @RequestParam(value = "password2") String password2) {
-        int tmp = DAO.addUtente(id, nome, cognome, email, password, dataDiNascita);
-        if(tmp==0)return "pages/index";
-        Utente u=DAO.getUtente(id);
+    @RequestMapping(value = "/pages/registrazione", method = RequestMethod.GET)
+    public String registrazione(ModelMap map,
+            @RequestParam(value = "username") String id,
+            @RequestParam(value = "nome") String nome,
+            @RequestParam(value = "cognome") String cognome,
+            @RequestParam(value = "email") String email,
+            @RequestParam(value = "dataDiNascita") String dataDiNascita,
+            @RequestParam(value = "password") String password,
+            @RequestParam(value = "password2") String password2) throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataDiNascita);
+        Utente tmp = new Utente(id, nome, cognome, email, password, date);
+        int x = DAO.addUtente(tmp);
+        if (x == 0) {
+            map.put("tmp", "no");
+            return "pages/registrazione";
+        }
+        map.put("tmp", "si");
+        Utente u = DAO.getUtente(id);
         user = id;
         map.put("user", u);
         return "pages/registrazione";
     }
-    
-    @RequestMapping(value = "/pages/editInfo", params = {"email","password", "confirmPassword"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = "/pages/editInfo", params = {"email", "password", "confirmPassword"}, method = RequestMethod.GET)
     public String editInfo(ModelMap map, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword) {
+        int x= DAO.updateUtente(user, email, password);
+        if (x == 0) {
+            map.put("tmp", "no");
+            return "pages/editInfo";
+        }
+        map.put("tmp", "si");
         return "pages/editInfo";
     }
-    
-    
+
     @RequestMapping(value = "/pages/biglietto_normale", method = RequestMethod.GET)
     public String biglietto_normale(ModelMap map) {
         List<Categoria> cat = DAO.getCategorie();
         map.put("categorie", cat);
         return "pages/biglietto_normale";
     }
-    
+
     @RequestMapping(value = "/pages/profile", method = RequestMethod.GET)
     public String profile(ModelMap map) {
         return "pages/profile";

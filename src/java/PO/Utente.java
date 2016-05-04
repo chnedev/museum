@@ -5,7 +5,6 @@ package PO;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +19,6 @@ import javax.persistence.Temporal;
 public class Utente  implements java.io.Serializable {
 
      @Id
-     @GeneratedValue
      private String id;
      private String nome;
      private String cognome;

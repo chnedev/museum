@@ -44,95 +44,61 @@ public class DAO {
     }
 
     public static int addBiglietto(String codice, BigDecimal tariffa, Utente idVisitatore) {
+        Biglietto bigl=new Biglietto(codice,tariffa,idVisitatore);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            String hql = "INSERT INTO Biglietto(Codice,Tariffa,IdVisitatore) VALUES(:codice, :tariffa, :visitatore)";
-            Query query = session.createQuery(hql);
-            query.setParameter("codice", codice);
-            query.setParameter("tariffa", tariffa);
-            query.setParameter("visitatore", idVisitatore.getId());
-            int x = query.executeUpdate();
-            tx.commit();
-            return x;
-        } catch (Exception ex) {
-            tx.rollback();
-        }
-        sessionFactory.close();
-        return 0;
+        session.beginTransaction();
+        try{
+        session.save(bigl);
+        session.getTransaction().commit();
+        session.close();
+        return 1;
+        }catch(Exception e){return 0;}
     }
 
     public static int addBiglietto(String codice, BigDecimal tariffa, Utente idVisitatore, Categoria codiceCategoria) {
+        Biglietto bigl=new Biglietto(codice,tariffa,idVisitatore,codiceCategoria);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            String hql = "INSERT INTO Biglietto(Codice,Tariffa,IdVisitatore,CodiceCategoria) VALUES(:codice, :tariffa, :visitatore, :codiceCategoria)";
-            Query query = session.createQuery(hql);
-            query.setParameter("codice", codice);
-            query.setParameter("tariffa", tariffa);
-            query.setParameter("visitatore", idVisitatore.getId());
-            query.setParameter("codiceCategoria", codiceCategoria.getCodice());
-            int x = query.executeUpdate();
-            tx.commit();
-            return x;
-        } catch (Exception ex) {
-            tx.rollback();
-        }
-        sessionFactory.close();
-        return 0;
+        session.beginTransaction();
+        try{
+        session.save(bigl);
+        session.getTransaction().commit();
+        session.close();
+        return 1;
+        }catch(Exception e){return 0;}
     }
 
     public static int addBiglietto(String codice, BigDecimal tariffa, Date dataDiValidita, Esposizione titoloEsposizione, Utente idVisitatore) {
+        Biglietto bigl=new Biglietto(codice,tariffa,dataDiValidita,titoloEsposizione, idVisitatore);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            String hql = "INSERT INTO Biglietto(Codice,Tariffa,DataDiValidita,TitoloEsposizione,IdVisitatore) VALUES(:codice, :dataDiValidita,:esposizione,:tariffa, :visitatore)";
-            Query query = session.createQuery(hql);
-            query.setParameter("codice", codice);
-            query.setParameter("tariffa", tariffa);
-            query.setParameter("dataDiValidita", dataDiValidita);
-            query.setParameter("esposizione", titoloEsposizione.getTitolo());
-            query.setParameter("visitatore", idVisitatore.getId());
-            int x = query.executeUpdate();
-            tx.commit();
-            return x;
-        } catch (Exception ex) {
-            tx.rollback();
-        }
-        sessionFactory.close();
-        return 0;
+        session.beginTransaction();
+        try{
+        session.save(bigl);
+        session.getTransaction().commit();
+        session.close();
+        return 1;
+        }catch(Exception e){return 0;}
     }
 
     public static int addBiglietto(String codice, BigDecimal tariffa, Date dataDiValidita, Esposizione titoloEsposizione, Utente idVisitatore, Categoria codiceCategoria) {
+        Biglietto bigl=new Biglietto(codice,tariffa,dataDiValidita,titoloEsposizione, idVisitatore,codiceCategoria);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            String hql = "INSERT INTO Biglietto(Codice,Tariffa,DataDiValidita,TitoloEsposizione,IdVisitatore,CodiceCategoria) VALUES(:codice, :dataDiValidita,:esposizione,:tariffa, :visitatore, :categoria)";
-            Query query = session.createQuery(hql);
-            query.setParameter("codice", codice);
-            query.setParameter("tariffa", tariffa);
-            query.setParameter("dataDiValidita", dataDiValidita);
-            query.setParameter("esposizione", titoloEsposizione);
-            query.setParameter("visitatore", idVisitatore.getId());
-            query.setParameter("categoria", codiceCategoria.getCodice());
-            int x = query.executeUpdate();
-            tx.commit();
-            return x;
-        } catch (Exception ex) {
-            tx.rollback();
-        }
-        sessionFactory.close();
-        return 0;
+        session.beginTransaction();
+        try{
+        session.save(bigl);
+        session.getTransaction().commit();
+        session.close();
+        return 1;
+        }catch(Exception e){return 0;}
     }
 
     public static List<Biglietto> getUserBiglietti(String id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Utente user= DAO.getUtente(id);
+        Utente user = DAO.getUtente(id);
         String hql = "FROM Biglietto WHERE IdVisitatore :user";
         Query query = session.createQuery(hql);
         query.setParameter("user", user);
@@ -142,6 +108,7 @@ public class DAO {
     }
 
     // Interazione con la tabella Utenti
+    
     public static Utente getUtente(String id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -155,59 +122,40 @@ public class DAO {
         return utenti.get(0);
     }
 
-    public static int addUtente(String id, String nome, String cognome, String email, String password, Date dataDiNascita) {
+    public static int addUtente(Utente tmp) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
-        try {
-            Utente tmp = new Utente(id, nome, cognome, email, password, dataDiNascita);
-            Integer x = (Integer) session.save(tmp);;
-            tx.commit();
-            return x;
-        } catch (Exception ex) {
-            tx.rollback();
-        }
-        sessionFactory.close();
-        return 0;
-    }
-    
-    public static int updateUtente(String id, String email, String password){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+        session.beginTransaction();
         try{
-        String hql="UPDATE Utente SET Email= :email, Password= :password WHERE Id= :id";
-        Query query = session.createQuery(hql);
-        query.setParameter("id",id);
-        query.setParameter("email",email);
-        query.setParameter("password",password);
-        return query.executeUpdate();
-        }  
-        catch(Exception ex){tx.rollback();}
-        sessionFactory.close();
-        return 0;
+        session.save(tmp);
+        session.getTransaction().commit();
+        session.close();
+        return 1;
+        }catch(Exception e){return 0;}
     }
 
-    public static int updateUtente(String id, String nome, String cognome, String email, String password, Date dataDiNascita) {
+    public static int updateUtente(String id, String email, String password) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+        session.beginTransaction();
         try {
-            String hql = "UPDATE Utente SET Id= :id, Nome= :nome, Cognome= :cognome, Email= :email, Password= :password, DataDiNascita= :dataDiNascita WHERE Id= :id";
-            Query query = session.createQuery(hql);
-            query.setParameter("id", id);
-            query.setParameter("nome", nome);
-            query.setParameter("cognome", cognome);
-            query.setParameter("email", email);
-            query.setParameter("password", password);
-            query.setParameter("dataDiNascita", dataDiNascita);
-            return query.executeUpdate();
-        } catch (Exception ex) {
-            tx.rollback();
+            String hql1 = "UPDATE Utente SET Email= :email WHERE Id= :id";
+            Query query1 = session.createQuery(hql1);
+            String hql2 = "UPDATE Utente SET Password= :password WHERE Id= :id";
+            Query query2 = session.createQuery(hql2);
+            query1.setParameter("id", id);
+            query2.setParameter("id", id);
+            query1.setParameter("email", email);
+            query2.setParameter("password", password);
+            int x= query1.executeUpdate();
+            int y= query2.executeUpdate();
+            session.getTransaction().commit();
+            session.close();
+            if((x+y)==1)return 1;
+            else return 0;
+        } catch (Exception e) {
+            return 0;
         }
-        sessionFactory.close();
-        return 0;
     }
 
     public static int deleteUtente(String id) {
@@ -222,7 +170,7 @@ public class DAO {
         } catch (Exception ex) {
             tx.rollback();
         }
-        sessionFactory.close();
+
         return 0;
     }
 
