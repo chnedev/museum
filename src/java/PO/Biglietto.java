@@ -29,13 +29,13 @@ public class Biglietto  implements java.io.Serializable {
      @Temporal(javax.persistence.TemporalType.DATE)
      private Date dataDiValidita;
      @ManyToOne
-     @JoinColumn(name = "titolo")
+     @JoinColumn(name = "TitoloEsposizione")
      private Esposizione titoloEsposizione;
      @ManyToOne
      @JoinColumn(name = "idVisitatore")
      private Utente idVisitatore;
      @ManyToOne
-     @JoinColumn(name = "codiceCategoria")
+     @JoinColumn(name = "CodiceCategoria")
      private Categoria codiceCategoria;
      
     @ManyToMany(mappedBy="biglietti")

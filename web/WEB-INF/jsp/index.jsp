@@ -191,9 +191,7 @@
             </ul>
             <% }%>
         </div>
-    </body>
-
-    <script>
+        <script>
         var modalEl = document.createElement('div');
         modalEl.style.width = '400px';
         modalEl.style.margin = '100px auto';
@@ -207,5 +205,8 @@
             mui.overlay('on', modalEl);
         }
     </script>
+    </body>
+
+    
 </html>
 

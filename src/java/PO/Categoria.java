@@ -26,7 +26,7 @@ public class Categoria  implements java.io.Serializable {
      private String documento;
      private float sconto;
      
-     @OneToMany(mappedBy="codiceCategoria")
+    @OneToMany(mappedBy="codiceCategoria")
     private Set<Biglietto> biglietti;
 
     public Categoria() {

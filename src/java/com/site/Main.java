@@ -162,6 +162,10 @@ public class Main {
     @RequestMapping(value = "/pages/my_tickets", method = RequestMethod.GET)
     public String my_tickets(ModelMap map) {
         List<Biglietto> bigl = DAO.getUserBiglietti(user);
+        if(bigl==null || bigl.size()==0){
+            map.put("col", 0);
+            return "pages/my_tickets";
+        }
         map.put("biglietti", bigl);
         int col = 2;
         if (bigl.size() % 2 == 1) {

@@ -40,21 +40,35 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#qnt").text("0");
-                x=0;
+                x = 0;
+                var modalEl = document.createElement('div');
+                modalEl.style.width = '400px';
+                modalEl.style.margin = '100px auto';
+                modalEl.style.backgroundColor = '#fff';
+                modalEl.className = 'mui-panel padding';
+                var infopanel = '<table class="mui-table mui-table--bordered"><thead><tr><th>Tipo</th><th>Descrizione</th><th>Prezzo</th></tr></thead><tbody><tr><td>Intero</td><td>-</td><td>15&euro;</td></tr><tr><td>Speciale</td><td>Giornalisti con tessera valida,<br/> politici, militari</td><td>10&euro;</td></tr><tr><td>Disabili</td><td>Persone con disabilit&agrave fisica<br/> o mentale evidente</td><td>8&euro;</td></tr><tr><td>Bambini</td><td>Bambini dai 6 ai 16 anni</td><td>3&euro;</td></tr><tr><td>Gratuito</td><td>Bambini di et&agrave inferiore ai 6 anni,<br/> accompagnatori dei disabili, membri ICOM</td><td>-</td></tr></tbody></table>';
+                modalEl.innerHTML = infopanel;
+                console.log(infopanel);
+                console.log(modalEl);
                 $(".aggiungi").click(function () {
                     var qnt = $("#qnt").text();
                     qnt = parseInt(qnt);
                     qnt = qnt + 1;
                     $("#qnt").text(qnt);
-                    var s = "<div id='rifBiglietto'>SELEZIONA</div><form><div class='mui-select'><select class='mui--text-caption'><option value='normale' selected>Biglietto standard</option>'<c:forEach items="${categorie}" var="categorie"><option value='${categorie.codice}'>Biglietto ${categorie.descrizione}</option></c:forEach>'</select></div></form></div>";
+                    var s = "";
                     var s2 = $("#opzioni").html();
                     $("#opzioni").html(s2 + s);
+                    $('#')
+                });
+                
+                $(".info").click(function () {
+                    mui.overlay('on', modalEl);
                 });
             });
-            </script>
-        </head>
-        <body>
-            <div id="sidedrawer" class="mui--no-user-select">
+        </script>
+    </head>
+    <body>
+        <div id="sidedrawer" class="mui--no-user-select">
             <%
                 if (null == session.getAttribute("username")) {
             %>
@@ -79,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <% } %>
+            <% }%>
             <div class="mui-divider"></div>
             <ul>
                 <li><a href="./profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
@@ -140,10 +154,55 @@
                                     <td>Visita normale</td>
                                     <td><span id="qnt"></span></td>
                                     <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
+
                                 </tr>
                             </tbody>
                         </table>
                         <div id="opzioni">
+                            <form>
+                                <div class="mui-col-md-8">
+                                    <div class="mui--text-subhead">Tipologia di biglietto&emsp;<button type="button" class="mui-btn mui-btn--flat info"><i class="icon ion-help-circled"></i></button></div>
+                                            <c:forEach items="${categorie}" var="categoria">
+                                        <div class="mui-radio">
+                                            <label>
+
+                                                <input type="radio"
+                                                       name="optionsRadios"
+                                                       id="optionsRadios1"
+                                                       value="option1"
+                                                       checked>
+                                                ${categoria.descrizione}
+                                            </label>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                                <div class="mui-col-md-4">
+                                    <div class="mui-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" name="audioguida">
+                                            Audioguida (5€)
+                                        </label>
+                                    </div>
+                                    <div class="mui-divider"></div>
+                                    <div class="mui-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" name="guida" id="#guida">
+                                            Guida (15€/h)
+                                        </label>
+                                    </div>
+                                    <div id="ore" class="mui-textfield" style="display:none;">
+                                        <input type="number" name="guidaore" value="0" min="0" max="4">
+                                        <label>Ore da prenotare (guida)</label>
+                                    </div>
+                                    <div class="mui-divider"></div>
+                                    <div class="mui-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">
+                                            Catalogo (3€)
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -176,19 +235,5 @@
                 </li>
             </ul>
         </div>
-        <script>
-            var modalEl = document.createElement('div');
-            modalEl.style.width = '400px';
-            modalEl.style.margin = '100px auto';
-            modalEl.style.backgroundColor = '#fff';
-            modalEl.className = 'mui-panel padding';
-            var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>';
-            modalEl.innerHTML = loginpanel;
-            console.log(loginpanel);
-            console.log(modalEl);
-            function activateModal() {
-                mui.overlay('on', modalEl);
-            }
-        </script>
     </body>
 </html>
