@@ -116,22 +116,17 @@
                 <div class="mui-containet-fluid margin">
                     <div class="mui-row">
                         <c:forEach items="${esposizioni}" var="esposizione">
-                            <c:if test="${col == 3}">
-                                <div class="mui-col-md-4">
-                                </c:if>
-                                <c:if test="${col == 2}">
-                                    <div class="mui-col-md-6">
-                                    </c:if>
-                                    <div class="cover-card mui--z1"></div> <br/>
-                                    <div class="mui-panel white mui--z2">
-                                        <div class="mui-container-fluid">
-                                            <div class="mui--text-title mui--text-center uppercase">${esposizione.titolo}</div><br/>
-                                            <div class="mui-divider"></div><br/>
-                                            <div class="card-date mui--text-center">dal ${esposizione.dataDiInizio} al ${esposizione.dataDiFine}</div>
-                                        </div>
+                            <div class="mui-col-xs-12 mui-col-md-4">
+                                <div class="mui-panel white mui--z2">
+                                    <div class="mui-container-fluid mui--text-center">
+                                        <div class="mui--text-title mui--text-center uppercase">${esposizione.titolo}</div><br/>
+                                        <div class="mui-divider"></div><br/>
+                                        <div class="card-date mui--text-center">dal ${esposizione.dataDiInizio} al ${esposizione.dataDiFine}</div>
+                                        <a style="margin-top:16px" class="mui-btn mui-btn--primary">Acquista</a>
                                     </div>
                                 </div>
-                            </c:forEach>
+                            </div>
+                        </c:forEach>
                         </div>
                         <br/><br/>
                     </div>

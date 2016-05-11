@@ -206,5 +206,15 @@ public class DAO {
         List<Categoria> lista = query.list();
         return lista;
     }
+    
+    // Interazione con la tabella Categorie
+    public static List<Servizioaggiuntivo> getServizi() {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql = "FROM Servizioaggiuntivo";
+        Query query = session.createQuery(hql);
+        List<Servizioaggiuntivo> lista = query.list();
+        return lista;
+    }
 
 }

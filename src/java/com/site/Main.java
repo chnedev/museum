@@ -133,7 +133,9 @@ public class Main {
     @RequestMapping(value = "/pages/biglietto_normale", method = RequestMethod.GET)
     public String biglietto_normale(ModelMap map) {
         List<Categoria> cat = DAO.getCategorie();
+        List<Servizioaggiuntivo> dat = DAO.getServizi();
         map.put("categorie", cat);
+        map.put("servizi", dat);
         return "pages/biglietto_normale";
     }
 
