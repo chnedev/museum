@@ -39,8 +39,16 @@
         <script src="../resources/static/script.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $("#qnt").text("0");
-                x = 0;
+                $("#qnt_Adulto").text("0");
+                $("#qnt_Bambino").text("0");
+                $("#qnt_Disabile").text("0");
+                $("#qnt_Speciale").text("0");
+                $("#qnt_Gratuito").text("0");
+                $("#qnt_servizio_1").text("0");
+                $("#qnt_servizio_2").text("0");
+                $("#qnt_servizio_3").text("0");
+                $("#totale").text("0");
+                
                 var modalEl = document.createElement('div');
                 modalEl.style.width = '400px';
                 modalEl.style.margin = '100px auto';
@@ -50,20 +58,65 @@
                 modalEl.innerHTML = infopanel;
                 console.log(infopanel);
                 console.log(modalEl);
-                $(".aggiungi").click(function () {
-                    var qnt = $("#qnt").text();
-                    qnt = parseInt(qnt);
-                    qnt = qnt + 1;
-                    $("#qnt").text(qnt);
-                    var s = "";
-                    var s2 = $("#opzioni").html();
-                    $("#opzioni").html(s2 + s);
-                    $('#')
+                $(".aggiungi_Adulto").click(function () {
+                    var target = $("#qnt_Adulto");
+                    add(target);
+                });
+                $(".aggiungi_Bambino").click(function () {
+                    var target = $("#qnt_Bambino");
+                    add(target);
+                });
+                $(".aggiungi_Disabile").click(function () {
+                    var target = $("#qnt_Disabile");
+                    add(target);
+                });
+                $(".aggiungi_Speciale").click(function () {
+                    var target = $("#qnt_Speciale");
+                    add(target);
+                });
+                $(".aggiungi_Gratuito").click(function () {
+                    var target = $("#qnt_Gratuito");
+                    add(target);
+                });
+                $(".aggiungi_servizio_1").click(function () {
+                    var target = $("#qnt_servizio_1");
+                    add(target);
+                });
+                $(".aggiungi_servizio_2").click(function () {
+                    var target = $("#qnt_servizio_2");
+                    add(target);
+                    $(".aggiungi_servizio_2").attr("disabled", true);
+                });
+                $(".aggiungi_servizio_3").click(function () {
+                    var target = $("#qnt_servizio_3");
+                    add(target);
                 });
                 
                 $(".info").click(function () {
                     mui.overlay('on', modalEl);
                 });
+                
+                function add(target){
+                    var qnt = target.text();
+                    qnt = parseInt(qnt);
+                    qnt = qnt + 1;
+                    target.text(qnt);
+                    updateTot();
+                }
+                
+                function updateTot(){
+                    var tot = 0;
+                    
+                    tot = tot + parseInt($("#qnt_Adulto").text())*15;
+                    tot = tot + parseInt($("#qnt_Speciale").text())*10;
+                    tot = tot + parseInt($("#qnt_Disabile").text())*8;
+                    tot = tot + parseInt($("#qnt_Bambino").text())*3;
+                    tot = tot + parseInt($("#qnt_servizio_1").text())*5;
+                    tot = tot + parseInt($("#qnt_servizio_2").text())*15;
+                    tot = tot + parseInt($("#qnt_servizio_3").text())*3;
+                    
+                    $("#totale").text(tot);
+                }
             });
         </script>
     </head>
@@ -129,111 +182,72 @@
         </header>
         <div id="content-wrapper">
             <div class="mui--appbar-height">
-            </div>˙
-
-            <div class="mui-container-fluid">
-                <br/><br/>
-                <div class="mui--text-headline mui--text-center ">BIGLIETTERIA ONLINE</div>
-                <br/>
-                <br/>
             </div>
 
             <div class="mui-container-fluid">
+                <div class="mui-container-fluid">
+                    <br/><br/>
+                    <div class="mui--text-headline ">BIGLIETTI</div>
+                    <br/>
+                    <br/>
+                </div>
                 <div class="mui-panel">
                     <div class="mui-container-fluid margin">
                         <table class="mui-table mui-table--bordered">
                             <thead>
                                 <tr>
-                                    <th width="30%">Biglietto</th>
+                                    <th width="30%">Biglietto<button type="button" class="mui-btn mui-btn--flat info"><i class="icon ion-help-circled"></i></button></th>
                                     <th>Quantit&agrave;</th>
                                     <th class="mui--text-right">Aggiungi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Visita normale</td>
-                                    <td><span id="qnt"></span></td>
-                                    <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
-
-                                </tr>
+                                <c:forEach items="${categorie}" var="categoria">
+                                    <tr>
+                                        <td>Biglietto ${categoria.descrizione}</td>
+                                        <td><span id="qnt_${categoria.descrizione}"></span></td>
+                                        <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi_${categoria.descrizione}" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
-                        <div id="opzioni">
-                            <form>
-                                <div class="mui-col-md-8">
-                                    <div class="mui--text-subhead">Tipologia di biglietto&emsp;<button type="button" class="mui-btn mui-btn--flat info"><i class="icon ion-help-circled"></i></button></div>
-                                            <c:forEach items="${categorie}" var="categoria">
-                                        <div class="mui-radio">
-                                            <label>
-
-                                                <input type="radio"
-                                                       name="optionsRadios"
-                                                       id="optionsRadios1"
-                                                       value="option1"
-                                                       checked>
-                                                ${categoria.descrizione}
-                                            </label>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                                <div class="mui-col-md-4">
-                                    <div class="mui-checkbox">
-                                        <label>
-                                            <input type="checkbox" value="" name="audioguida">
-                                            Audioguida (5€)
-                                        </label>
-                                    </div>
-                                    <div class="mui-divider"></div>
-                                    <div class="mui-checkbox">
-                                        <label>
-                                            <input type="checkbox" value="" name="guida" id="#guida">
-                                            Guida (15€/h)
-                                        </label>
-                                    </div>
-                                    <div id="ore" class="mui-textfield" style="display:none;">
-                                        <input type="number" name="guidaore" value="0" min="0" max="4">
-                                        <label>Ore da prenotare (guida)</label>
-                                    </div>
-                                    <div class="mui-divider"></div>
-                                    <div class="mui-checkbox">
-                                        <label>
-                                            <input type="checkbox" value="">
-                                            Catalogo (3€)
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
+                
+                <div class="mui-container-fluid">
+                    <br/><br/>
+                    <div class="mui--text-headline ">SERVIZI AGGIUNTIVI</div>
+                    <br/>
+                    <br/>
+                </div>
+                
+                <div class="mui-panel">
+                    <div class="mui-container-fluid margin">    
+                        <table class="mui-table mui-table--bordered">
+                            <thead>
+                                <tr>
+                                    <th width="30%">Servizio aggiuntivo</th>
+                                    <th>Quantit&agrave;</th>
+                                    <th class="mui--text-right">Aggiungi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${servizi}" var="servizio">
+                                    <tr>
+                                        <td>${servizio.descrizione}</td>
+                                        <td><span id="qnt_servizio_${servizio.codice}"></span></td>
+                                        <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi_servizio_${servizio.codice}" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="mui-container-fluid margin">    
+                    <h3 class="mui--text-right"><span>Totale: </span><span id="totale"></span><span> €    </span><button class="mui-btn mui-btn--small mui-btn--primary" data-titolo="Normale" >PAGA ORA</button></h3>
+                </div>
             </div>
-
-            <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-                <li class="mfb-component__wrap">
-                    <a href="#" class="mfb-component__button--main">
-                        <i class="mfb-component__main-icon--resting ion-ios-pricetags"></i>
-                        <i class="mfb-component__main-icon--active ion-close-round"></i>
-                    </a>
-                    <ul class="mfb-component__list">
-                        <li>
-                            <a href="#" data-mfb-label="Biglietteria" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-ios-pricetag"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-mfb-label="Carello" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-ios-cart"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" data-mfb-label="Profilo" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-android-person"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
         </div>
     </body>
 </html>
