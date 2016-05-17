@@ -115,7 +115,36 @@
         <div id="content-wrapper">
             <div class="mui--appbar-height">
             </div>
+            <div class="mui-containet-fluid margin">
+                <br/><br/>
+                <div class="mui-row">
+                    <c:if test="${col == 0}">
+                        <div class="mui--text-center">Non hai ancora acquistato biglietti.</div>
+                    </c:if>
+                    <c:forEach items="${biglietti}" var="biglietto">
+                        <c:if test="${col == 3}">
+                            <div class="mui-col-md-4">
+                            </c:if>
+                            <c:if test="${col == 2}">
+                                <div class="mui-col-md-6">
+                                </c:if>
+                                <div class="cover-card mui--z1"></div> <br/>
+                                <div class="mui-panel white mui--z2">
+                                    <div class="mui-container-fluid">
+                                        <div class="mui--text-title mui--text-center uppercase">Biglietto ${biglietto.codice}</div><br/>
+                                        <div class="mui-divider"></div><br/>
+                                        <div class="card-date mui--text-center">Categoria biglietto: ${biglietto.codiceCategoria.getDescrizione()}</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <br/><br/>
+                </div>
+            </div>
             <div class="mui-container-fluid">
+                <br/><br/>
             </div>
         </div>
 

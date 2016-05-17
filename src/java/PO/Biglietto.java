@@ -31,9 +31,11 @@ public class Biglietto  implements java.io.Serializable {
      @ManyToOne
      @JoinColumn(name = "TitoloEsposizione")
      private Esposizione titoloEsposizione;
+     
      @ManyToOne
      @JoinColumn(name = "idVisitatore")
      private Utente idVisitatore;
+     
      @ManyToOne
      @JoinColumn(name = "CodiceCategoria")
      private Categoria codiceCategoria;

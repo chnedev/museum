@@ -22,13 +22,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author chnedev
  */
 @Controller
-public class Main {
+public class Main{
 
     private String user;
 
     public Main() {
-        user = "";
+       user="admin";
     }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap map) {
@@ -121,7 +122,7 @@ public class Main {
 
     @RequestMapping(value = "/pages/editInfo", params = {"email", "password", "confirmPassword"}, method = RequestMethod.GET)
     public String editInfo(ModelMap map, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password, @RequestParam(value = "confirmPassword") String confirmPassword) {
-        int x= DAO.updateUtente(user, email, password);
+        int x = DAO.updateUtente(user, email, password);
         if (x == 0) {
             map.put("tmp", "no");
             return "pages/editInfo";
@@ -164,7 +165,8 @@ public class Main {
     @RequestMapping(value = "/pages/my_tickets", method = RequestMethod.GET)
     public String my_tickets(ModelMap map) {
         List<Biglietto> bigl = DAO.getUserBiglietti(user);
-        if(bigl==null || bigl.size()==0){
+        map.put("biglietti", bigl);
+        if (bigl == null || bigl.isEmpty()) {
             map.put("col", 0);
             return "pages/my_tickets";
         }

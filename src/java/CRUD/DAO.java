@@ -95,14 +95,14 @@ public class DAO {
         }catch(Exception e){return 0;}
     }
 
-    public static List<Biglietto> getUserBiglietti(String id) {
+    public static List<Biglietto> getUserBiglietti(String user) {
         
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Utente user = DAO.getUtente(id);
-        String hql = "FROM Biglietto ";
+        //Utente user = DAO.getUtente(id);
+        String hql = "FROM Biglietto WHERE IdVisitatore= :id";
         Query query = session.createQuery(hql);
-        //query.setParameter("user", user);
+        query.setParameter("id", user);
         List<Biglietto> lista = query.list();
         return lista;
 
