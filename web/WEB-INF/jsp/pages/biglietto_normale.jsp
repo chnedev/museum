@@ -39,84 +39,13 @@
         <script src="../resources/static/script.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $("#qnt_Adulto").text("0");
-                $("#qnt_Bambino").text("0");
-                $("#qnt_Disabile").text("0");
-                $("#qnt_Speciale").text("0");
-                $("#qnt_Gratuito").text("0");
-                $("#qnt_servizio_1").text("0");
-                $("#qnt_servizio_2").text("0");
-                $("#qnt_servizio_3").text("0");
-                $("#totale").text("0");
+                var counter = 0;
                 
-                var modalEl = document.createElement('div');
-                modalEl.style.width = '400px';
-                modalEl.style.margin = '100px auto';
-                modalEl.style.backgroundColor = '#fff';
-                modalEl.className = 'mui-panel padding';
-                var infopanel = '<table class="mui-table mui-table--bordered"><thead><tr><th>Tipo</th><th>Descrizione</th><th>Prezzo</th></tr></thead><tbody><tr><td>Intero</td><td>-</td><td>15&euro;</td></tr><tr><td>Speciale</td><td>Giornalisti con tessera valida,<br/> politici, militari</td><td>10&euro;</td></tr><tr><td>Disabili</td><td>Persone con disabilit&agrave fisica<br/> o mentale evidente</td><td>8&euro;</td></tr><tr><td>Bambini</td><td>Bambini dai 6 ai 16 anni</td><td>3&euro;</td></tr><tr><td>Gratuito</td><td>Bambini di et&agrave inferiore ai 6 anni,<br/> accompagnatori dei disabili, membri ICOM</td><td>-</td></tr></tbody></table>';
-                modalEl.innerHTML = infopanel;
-                console.log(infopanel);
-                console.log(modalEl);
-                $(".aggiungi_Adulto").click(function () {
-                    var target = $("#qnt_Adulto");
-                    add(target);
+                $('#empty-card').click(function(){
+                    var card = '<div id="ticket-"' + c + ' class="mui-col-xs-12 mui-col-md-6 card-container"><div id="index" class="mui-col-xs-10 mui-col-xs-offset-1 mui-panel ticket"><h3>Biglietto</h3><div class="mui-select"><select name="categoria"><c:forEach items="${categorie}" var="categoria"><option>${categoria.descrizione}</option></c:forEach></select></div><c:forEach items="${servizi}" var="servizio"><c:if test = "${servizio.descrizione != 'Guida specializzata'}"><div name="${servizio.descrizione}" class="mui-checkbox"><label><input type="checkbox" value="">${servizio.descrizione}</label></div></c:if></c:forEach></div></div>'
+                    c++;
+                    $(card).insertBefore( "#ticket-target" );
                 });
-                $(".aggiungi_Bambino").click(function () {
-                    var target = $("#qnt_Bambino");
-                    add(target);
-                });
-                $(".aggiungi_Disabile").click(function () {
-                    var target = $("#qnt_Disabile");
-                    add(target);
-                });
-                $(".aggiungi_Speciale").click(function () {
-                    var target = $("#qnt_Speciale");
-                    add(target);
-                });
-                $(".aggiungi_Gratuito").click(function () {
-                    var target = $("#qnt_Gratuito");
-                    add(target);
-                });
-                $(".aggiungi_servizio_1").click(function () {
-                    var target = $("#qnt_servizio_1");
-                    add(target);
-                });
-                $(".aggiungi_servizio_2").click(function () {
-                    var target = $("#qnt_servizio_2");
-                    add(target);
-                    $(".aggiungi_servizio_2").attr("disabled", true);
-                });
-                $(".aggiungi_servizio_3").click(function () {
-                    var target = $("#qnt_servizio_3");
-                    add(target);
-                });
-                
-                $(".info").click(function () {
-                    mui.overlay('on', modalEl);
-                });
-                
-                function add(target){
-                    var qnt = target.text();
-                    qnt = parseInt(qnt);
-                    qnt = qnt + 1;
-                    target.text(qnt);
-                    updateTot();
-                }
-                
-                function updateTot(){
-                    var tot = 0;
-                    
-                    tot = tot + parseInt($("#qnt_Adulto").text())*15;
-                    tot = tot + parseInt($("#qnt_Speciale").text())*10;
-                    tot = tot + parseInt($("#qnt_Disabile").text())*8;
-                    tot = tot + parseInt($("#qnt_Bambino").text())*3;
-                    tot = tot + parseInt($("#qnt_servizio_1").text())*5;
-                    tot = tot + parseInt($("#qnt_servizio_2").text())*15;
-                    tot = tot + parseInt($("#qnt_servizio_3").text())*3;
-                    
-                    $("#totale").text(tot);
-                }
             });
         </script>
     </head>
@@ -185,12 +114,19 @@
             </div>
 
             <div class="mui-container-fluid">
-                <div class="mui-container-fluid">
-                    <br/><br/>
-                    <div class="mui--text-headline ">BIGLIETTI</div>
-                    <br/>
-                    <br/>
+                <div id="tickets" class="mui-row"> 
+                    <div id="ticket-target" class="mui-col-xs-12 mui-col-md-6 card-container">
+                        <div id="empty-card" class="mui-col-xs-10 mui-col-xs-offset-1 empty-ticket">
+                            <h1><i class="icon ion-plus-round"></i></h1>
+                            <h3>Aggiungi Biglietto</h3>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            
+            
+            <div class="mui-container-fluid">
                 <div class="mui-panel">
                     <div class="mui-container-fluid margin">
                         <table class="mui-table mui-table--bordered">
@@ -198,6 +134,7 @@
                                 <tr>
                                     <th width="30%">Biglietto<button type="button" class="mui-btn mui-btn--flat info"><i class="icon ion-help-circled"></i></button></th>
                                     <th>Quantit&agrave;</th>
+                                    <th class="mui--text-right">Rimuovi</th>
                                     <th class="mui--text-right">Aggiungi</th>
                                 </tr>
                             </thead>
@@ -206,6 +143,7 @@
                                     <tr>
                                         <td>Biglietto ${categoria.descrizione}</td>
                                         <td><span id="qnt_${categoria.descrizione}"></span></td>
+                                        <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary rimuovi_${categoria.descrizione}" data-titolo="Normale" ><i class="icon ion-minus-round"></i></button></td>
                                         <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi_${categoria.descrizione}" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
                                     </tr>
                                 </c:forEach>
@@ -228,6 +166,7 @@
                                 <tr>
                                     <th width="30%">Servizio aggiuntivo</th>
                                     <th>Quantit&agrave;</th>
+                                    <th class="mui--text-right">Rimuovi</th>
                                     <th class="mui--text-right">Aggiungi</th>
                                 </tr>
                             </thead>
@@ -236,6 +175,7 @@
                                     <tr>
                                         <td>${servizio.descrizione}</td>
                                         <td><span id="qnt_servizio_${servizio.codice}"></span></td>
+                                        <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary rimuovi_servizio_${servizio.codice}" data-titolo="Normale" ><i class="icon ion-minus-round"></i></button></td>
                                         <td class="mui--text-right"><button class="mui-btn mui-btn--small mui-btn--primary aggiungi_servizio_${servizio.codice}" data-titolo="Normale" ><i class="icon ion-plus-round"></i></button></td>
                                     </tr>
                                 </c:forEach>
