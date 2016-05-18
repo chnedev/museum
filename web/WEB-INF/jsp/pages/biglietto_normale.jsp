@@ -42,8 +42,8 @@
                 var counter = 0;
                 
                 $('#empty-card').click(function(){
-                    var card = '<div id="ticket-"' + c + ' class="mui-col-xs-12 mui-col-md-6 card-container"><div id="index" class="mui-col-xs-10 mui-col-xs-offset-1 mui-panel ticket"><h3>Biglietto</h3><div class="mui-select"><select name="categoria"><c:forEach items="${categorie}" var="categoria"><option>${categoria.descrizione}</option></c:forEach></select></div><c:forEach items="${servizi}" var="servizio"><c:if test = "${servizio.descrizione != 'Guida specializzata'}"><div name="${servizio.descrizione}" class="mui-checkbox"><label><input type="checkbox" value="">${servizio.descrizione}</label></div></c:if></c:forEach></div></div>'
-                    c++;
+                    var card = '<div id="ticket-"' + counter + ' class="mui-col-xs-12 mui-col-md-6 card-container"><div id="index" class="mui-col-xs-10 mui-col-xs-offset-1 mui-panel ticket"><h3>Biglietto</h3><div class="mui-select"><select name="categoria"><c:forEach items="${categorie}" var="categoria"><option>${categoria.descrizione}</option></c:forEach></select></div><c:forEach items="${servizi}" var="servizio"><c:if test = "${servizio.descrizione != 'Guida specializzata'}"><div name="${servizio.descrizione}" class="mui-checkbox"><label><input type="checkbox" value="">${servizio.descrizione}</label></div></c:if></c:forEach></div></div>'
+                    counter++;
                     $(card).insertBefore( "#ticket-target" );
                 });
             });
