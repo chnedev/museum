@@ -137,6 +137,9 @@
                     </form>
                 </div>
             </div>
+            <div id="home">
+                <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
+            </div>
         </div>
 
         <script>
@@ -144,9 +147,9 @@
             modalEl.style.width = '400px';
             modalEl.style.margin = '100px auto';
             modalEl.style.backgroundColor = '#fff';
-            modalEl.className = 'mui-panel padding'
+            modalEl.className = 'mui-panel padding';
 
-            var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>'
+            var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>';
             modalEl.innerHTML = loginpanel;
             console.log(loginpanel);
             console.log(modalEl);
@@ -157,15 +160,15 @@
             function checkPwd() {
                 pwd1 = $('input[name=password]').val();
                 pwd2 = $('input[name=confirmPassword]').val();
-                if (pwd1 == pwd2) {
+                if (pwd1 === pwd2) {
                     return true;
                 } else {
                     var pwdModal = document.createElement('div');
-                    pwdModal.style.width = '400px';
-                    pwdModal.style.margin = '100px auto';
+                    pwdModal.style.width = '320px';
+                    pwdModal.style.margin = '50% auto';
                     pwdModal.style.backgroundColor = '#fff';
-                    pwdModal.className = 'mui-panel padding'
-                    pwdModal.innerHTML = '<h3>Le password non corrispondono!</h3>'
+                    pwdModal.className = 'mui-panel padding';
+                    pwdModal.innerHTML = '<span>Le password non corrispondono.</span>';
                     mui.overlay('on', pwdModal);
                     return false;
                 }

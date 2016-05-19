@@ -13,6 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -30,6 +31,8 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <!-- -->
+        <title>XXI Museum | Biglietteria</title>
     </head>
 
     <body>
@@ -67,14 +70,13 @@
                 <li><a href="./profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
                 <li><a href="./my_tickets"><strong><i class="icon ion-pricetags" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
                 <li><a href="./editProfile"><strong><i class="icon ion-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
-                <% } %>
+                                <% } %>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
                 <li><a href="./biglietto_normale"><strong><i class="icon ion-pricetag" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
                 <li><a href="./eventi"><strong><i class="icon ion-android-calendar" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
                 <li><a href="./storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
                 <li><a href="./orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
                 <li><a href="./contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
@@ -97,7 +99,7 @@
                                 } else {
                                 %>                              
                                 <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                <% } %>
+                                <% }%>
                             </td>
                         </tr>
                     </table>
@@ -110,8 +112,11 @@
             </div>
             <div class="mui-container-fluid">
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">ESPOSIZIONI IN CORSO O FUTURE</div>
+                <div class="mui--text-headline mui--text-center ">BIGLIETTERIA DELLE ESPOSIZIONI IN CORSO O FUTURE</div>
                 <br/>
+                <div class="mui--text-center">
+                    <button class="mui-btn"><a href="./pages/biglietto_normale"><i class="icon ion-ios-arrow-forward" aria-hidden="true"></i>&emsp;ACQUISTA IL BIGLIETTO DI UN'ESPOSIZIONE</a></button>
+                </div>
                 <br/>
                 <div class="mui-containet-fluid margin">
                     <div class="mui-row">
@@ -122,66 +127,23 @@
                                         <div class="mui--text-title mui--text-center uppercase">${esposizione.titolo}</div><br/>
                                         <div class="mui-divider"></div><br/>
                                         <div class="card-date mui--text-center">dal ${esposizione.dataDiInizio} al ${esposizione.dataDiFine}</div>
-                                        <a style="margin-top:16px" class="mui-btn mui-btn--primary">Acquista</a>
+                                        <!--<a style="margin-top:16px" class="mui-btn mui-btn--raised">Acquista</a>-->
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
-                        </div>
-                        <br/><br/>
                     </div>
-                </div>
-                <div class="mui-container-fluid">
                     <br/><br/>
+
                 </div>
             </div>
+            <div class="mui-container-fluid">
+                <br/><br/>
+            </div>
+            <div id="home">
+                <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
+            </div>
         </div>
-        <%
-            if (null != session.getAttribute("username")) {
-        %>
-        <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-            <li class="mfb-component__wrap">
-                <a href="#" class="mfb-component__button--main">
-                    <i class="mfb-component__main-icon--resting ion-ios-pricetags"></i>
-                    <i class="mfb-component__main-icon--active ion-close-round"></i>
-                </a>
-                <ul class="mfb-component__list">
-                    <li>
-                        <a href="#" data-mfb-label="Biglietteria" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-ios-pricetag"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" data-mfb-label="Carello" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-ios-cart"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" data-mfb-label="Profilo" class="mfb-component__button--child">
-                            <i class="mfb-component__child-icon ion-android-person"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <% }%>
-    </div>
-
-    <script>
-        var modalEl = document.createElement('div');
-        modalEl.style.width = '400px';
-        modalEl.style.margin = '100px auto';
-        modalEl.style.backgroundColor = '#fff';
-        modalEl.className = 'mui-panel padding';
-        var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username" maxlength="5"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username" maxlength="5"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>';
-        modalEl.innerHTML = loginpanel;
-        console.log(loginpanel);
-        console.log(modalEl);
-        function activateModal() {
-            mui.overlay('on', modalEl);
-        }
-    </script>
-</body>
+    </body>
 </html>
 

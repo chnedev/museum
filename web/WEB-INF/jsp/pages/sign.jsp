@@ -14,6 +14,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -31,6 +32,8 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <!-- -->
+        <title>XXI Museum | Sign</title>
     </head>
 
     <body>
@@ -68,7 +71,6 @@
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
                 <li><a href="./storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
                 <li><a href="./orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
                 <li><a href="./contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
@@ -116,11 +118,11 @@
                             <br/>
                             <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
                                 <form method="get" action="./login">
-                                    <div class="mui-textfield" required>
-                                        <input type="text" name="username"required>
+                                    <div class="mui-textfield">
+                                        <input type="text" name="username" required>
                                         <label>Username</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="password" name="password" required>
                                         <label>Password</label>
                                     </div>
@@ -129,32 +131,32 @@
                             </div>
 
                             <div class="mui-tabs__pane" id="pane-justified-2">
-                                <form method="get" action="./registrazione">
-                                    <div class="mui-textfield" required>
-                                        <input type="text" name="username">
+                                <form method="post" action="./registrazione">
+                                    <div class="mui-textfield">
+                                        <input type="text" name="username" required>
                                         <label>Username</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="text" name="nome" required>
                                         <label>Nome</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="text" name="cognome" required>
                                         <label>Cognome</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="email" name="email" required>
                                         <label>Email</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="date" name="dataDiNascita" required>
                                         <label>Data di nascita</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield">
                                         <input type="password" name="password" required>
                                         <label>Password</label>
                                     </div>
-                                    <div class="mui-textfield" required>
+                                    <div class="mui-textfield" >
                                         <input type="password" name="password2" required>
                                         <label>Conferma la password</label>
                                     </div>
@@ -167,6 +169,9 @@
                 <br/><br/><br/>
             </div>
             <br/><br/>
+            <div id="home">
+                <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
+            </div>
         </div>
     </body>
 </html>

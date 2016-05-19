@@ -7,15 +7,20 @@ package com.site;
 
 import CRUD.DAO;
 import PO.*;
+import com.google.gson.Gson;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -59,6 +64,11 @@ public class Main{
     public String contatti(ModelMap map) {
         return "pages/contatti";
     }
+    
+    @RequestMapping(value = "/pages/storia", method = RequestMethod.GET)
+    public String storia(ModelMap map) {
+        return "pages/storia";
+    }
 
     @RequestMapping(value = "/pages/sign", method = RequestMethod.GET)
     public String sign(ModelMap map) {
@@ -97,7 +107,7 @@ public class Main{
         return "pages/logout";
     }
 
-    @RequestMapping(value = "/pages/registrazione", method = RequestMethod.GET)
+    @RequestMapping(value = "/pages/registrazione", method = RequestMethod.POST)
     public String registrazione(ModelMap map,
             @RequestParam(value = "username") String id,
             @RequestParam(value = "nome") String nome,
@@ -137,7 +147,20 @@ public class Main{
         List<Servizioaggiuntivo> dat = DAO.getServizi();
         map.put("categorie", cat);
         map.put("servizi", dat);
+        map.put("eventi", DAO.getEsposizioniAv());
         return "pages/biglietto_normale";
+    }
+    
+     @RequestMapping(value = "/pages/compra", method = RequestMethod.POST)
+    public @ResponseBody  String compra(@RequestParam(value="biglietti") String biglietti) {
+        Gson g = new Gson();
+        JsonObj[] obj = g.fromJson(biglietti, JsonObj[].class);
+        for(JsonObj bil : obj){
+            Esposizione e = DAO.getEsposizioneById(bil.getCodice());
+            Categoria cat = DAO.getCategoriaById(bil.getCategoria());
+            List<Servizioaggiuntivo> servizi = new ArrayList<Servizioaggiuntivo>();
+        }
+        return "comprati " + obj.length + " biglietti";
     }
 
     @RequestMapping(value = "/pages/profile", method = RequestMethod.GET)

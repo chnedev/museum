@@ -1,3 +1,12 @@
+.whitefont{
+    color:#fff;
+}
+
+.whitefont:hover{
+    color:#FFE0B2;
+}
+
+
 a, a:hover, a:active, a:visited{
   text-decoration: none;
   color: black;
@@ -22,7 +31,7 @@ a, a:hover, a:active, a:visited{
 }
 
 .darker{
-  background-color: #FAFAFA;
+  background-color: #eee;
   padding-top: 20px;
 }
 
@@ -44,6 +53,10 @@ a, a:hover, a:active, a:visited{
   font-size: 30px;
 }
 
+.iconlarger1{
+  font-size: 18px;
+}
+
 .iconbig{
   font-size: 80px;
 }
@@ -57,6 +70,7 @@ a, a:hover, a:active, a:visited{
   color:#424242;
 }
 
+
 .cover-storia{
   background: url('../img/cover3.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -68,6 +82,15 @@ a, a:hover, a:active, a:visited{
 
 .cover-map{
   background: url('../img/cover-map.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 75vh;
+}
+
+.cover-history{
+  background: url('../img/cover-history.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -101,12 +124,13 @@ a, a:hover, a:active, a:visited{
 
 .sidenav-disabled{
     height: 56px;
-    font-weight: 100;
+    text-transform: uppercase;
     cursor: auto !important;
+    background-color: #F5F5F5;
 }
 
 .sidenav-disabled:hover{
-    background: transparent !important;
+    background: #F5F5F5 !important;
 }
 
 .sidenav-icon-text{
@@ -149,8 +173,23 @@ a, a:hover, a:active, a:visited{
 }
 
 .edit-profile-fab{
-    color: #fff !important;
+    color: black !important;
+    background-color: #FFF3E0 !important;
     position: absolute;
     top: 32px;
     margin-left: 32px;
+}
+
+.social-icons{
+    font-size:16px;
+    font-family: 'Chewy';
+}
+
+#home{
+    display: block;
+   position:fixed;
+   bottom:20px;
+   width:50px;
+   height:50px;
+   right:20px;
 }

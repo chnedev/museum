@@ -12,9 +12,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
         <!--icons-->
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -29,6 +31,8 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <!-- -->
+        <title>XXI Museum | Contatti</title>
     </head>
 
     <body>
@@ -66,14 +70,13 @@
                 <li><a href="./profile"><strong><i class="icon ion-person" aria-hidden="true"></i><span class="sidenav-icon-text">Profilo</span></strong></a></li>
                 <li><a href="./my_tickets"><strong><i class="icon ion-pricetags" aria-hidden="true"></i><span class="sidenav-icon-text">I miei biglietti</span></strong></a></li>
                 <li><a href="./editProfile"><strong><i class="icon ion-edit" aria-hidden="true"></i><span class="sidenav-icon-text">Personalizza profilo</span></strong></a></li>
-                <% } %>
+                                <% } %>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Biglietteria</span></strong></li>
                 <li><a href="./biglietto_normale"><strong><i class="icon ion-pricetag" aria-hidden="true"></i><span class="sidenav-icon-text">Biglietto normale</span></strong></a></li>
                 <li><a href="./eventi"><strong><i class="icon ion-android-calendar" aria-hidden="true"></i><span class="sidenav-icon-text">Esposizioni ed Eventi</span></strong></a></li>
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
                 <li><a href="./storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
                 <li><a href="./orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
                 <li><a href="./contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
@@ -96,7 +99,7 @@
                                 } else {
                                 %>                              
                                 <button class="mui-btn mui-btn--primary"><a style="color: white;" href="./logout">LOG OUT</a></button>
-                                <% } %>
+                                <% }%>
                             </td>
                         </tr>
                     </table>
@@ -144,16 +147,16 @@
                     <div class="mui-col-md-6 mui-col-md-offset-3">
                         <form>
                             <legend><i class="icon ion-ios-information-outline iconlarger mui--align-middle"></i>&emsp;RICHIEDI INFORMAZIONI</legend>
-                            <div class="mui-textfield mui-textfield--float-label" required>
-                                <input type="text">
+                            <div class="mui-textfield mui-textfield--float-label">
+                                <input type="text" required>
                                 <label>Nome e cognome</label>
                             </div>
-                            <div class="mui-textfield mui-textfield--float-label" required>
-                                <input type="email">
+                            <div class="mui-textfield mui-textfield--float-label">
+                                <input type="email" required>
                                 <label>Email</label>
                             </div>
-                            <div class="mui-textfield mui-textfield--float-label" required>
-                                <textarea></textarea>
+                            <div class="mui-textfield mui-textfield--float-label">
+                                <textarea required></textarea>
                                 <label>Testo</label>
                             </div>
                             <button type="submit" class="mui-btn mui-btn--raised ">INVIA</button>
@@ -162,36 +165,22 @@
                 </div>
                 <br/><br/><br/>
             </div>
-            <%
-                if (null != session.getAttribute("username")) {
-            %>
-            <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-                <li class="mfb-component__wrap">
-                    <a href="#" class="mfb-component__button--main">
-                        <i class="mfb-component__main-icon--resting ion-ios-pricetags"></i>
-                        <i class="mfb-component__main-icon--active ion-close-round"></i>
-                    </a>
-                    <ul class="mfb-component__list">
-                        <li>
-                            <a href="#" data-mfb-label="Biglietteria" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-ios-pricetag"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-mfb-label="Carello" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-ios-cart"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" data-mfb-label="Profilo" class="mfb-component__button--child">
-                                <i class="mfb-component__child-icon ion-android-person"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <% }%>
+            <div class="padding" id="footer">
+                <div class="mui-container-fluid mui--text-center">
+                    <br/>
+                    <span class="social-icons">#XXIMuseumSocial</span>
+                    <br/><br/>
+                    <a href="#"><i class="icon ion-social-twitter iconlarger whitefont twitter"></i></a>
+                    &emsp;&emsp;&emsp;
+                    <a href="#"><i class="icon ion-social-facebook iconlarger whitefont facebook"></i></a>
+                    &emsp;&emsp;&emsp;
+                    <a href="#"><i class="icon ion-social-googleplus iconlarger whitefont googleplus"></i></a>
+                    <br/><br/>
+                </div>
+            </div>
+            <div id="home">
+                <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
+            </div>
         </div>
 
         <script>

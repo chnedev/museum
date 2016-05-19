@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 
@@ -33,7 +32,7 @@
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
         <!-- -->
-        <title>XXI Museum | Orari & info</title>
+        <title>XXI Museum | Storia</title>
     </head>
 
     <body>
@@ -42,13 +41,13 @@
                 if (null == session.getAttribute("username")) {
             %>
             <div id="sidedrawer-brand" class="mui--appbar-line-height">
-                <a id="sidedrawer-brand__title" href="./">XXI museum</a>
+                <a id="sidedrawer-brand__title" href="../index">XXI museum</a>
             </div>
             <%
             } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
-                <a id="sidedrawer-brand__title" href="./">XXI museum</a>
+                <a id="sidedrawer-brand__title" href="../index">XXI museum</a>
                 <div class="sidedrawer-brand__profile__gradient"></div>
                 <div id="sidedrawer-brand__profile" class="mui-row">
                     <div class="mui-col-xs-4 mui-col-md-3">
@@ -111,63 +110,36 @@
         <div id="content-wrapper">
             <div class="mui--appbar-height">
             </div>
-            <div class="mui-container-fluid padding">
+
+            <div class="mui-container-fluid">
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">ORARI</div>
+                <div class="mui--text-headline mui--text-center ">STORIA</div>
                 <br/>
-                <table class="mui-table mui-table--bordered">
-                    <thead>
-                        <tr><th></th><th>Mattina</th><th>Pomeriggio</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Luned&igrave;</td><td>8:00 - 12:30</td><td>15:30 - 20:00</td></tr>
-                        <tr><td>Marted&igrave;</td><td>8:00 - 12:30</td><td>15:30 - 20:00</td></tr>
-                        <tr><td>Mercoled&igrave;</td><td>8:00 - 12:30</td><td>15:30 - 20:00</td></tr>
-                        <tr><td>Gioved&igrave;</td><td>8:00 - 12:30</td><td>15:30 - 20:00</td></tr>
-                        <tr><td>Venerd&igrave;</td><td>8:00 - 12:30</td><td>15:30 - 20:00</td></tr>
-                        <tr><td>Sabato</td><td>8:00 - 12:00</td><td>15:30 - 19:00</td></tr>
-                    </tbody>
-                </table>
-                <br/><br/>
+                <br/>
             </div>
-            <div class="mui-container-fluid darker padding">
+            <div class="cover-history"></div>
+            <div class="mui-container-fluid darker">
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">PREZZI</div>
-                <br/>
-                <table class="mui-table mui-table--bordered">
-                    <thead>
-                        <tr><th>Tipo</th><th>Descrizione</th><th>Prezzo</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Intero</td><td>-</td><td>15&euro;</td></tr>
-                        <tr><td>Speciale</td><td>Giornalisti con tessera valida,<br/> politici, militari</td><td>10&euro;</td></tr>
-                        <tr><td>Disabili</td><td>Persone con disabilit&agrave fisica<br/> o mentale evidente</td><td>8&euro;</td></tr>
-                        <tr><td>Bambini</td><td>Bambini dai 6 ai 16 anni</td><td>3&euro;</td></tr>
-                        <tr><td>Gratuito</td><td>Bambini di et&agrave inferiore ai 6 anni,<br/> accompagnatori dei disabili, membri ICOM</td><td>-</td></tr>
-                    </tbody>
-                </table>
+                <div class="padding">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacus libero, condimentum a efficitur vitae, finibus a quam. Mauris quis dolor nibh. Morbi ultrices tincidunt tellus, convallis tristique velit porttitor eu. Vivamus euismod venenatis velit ac laoreet. Sed rutrum luctus sem id ultrices. Sed volutpat interdum ipsum, vitae congue tellus tristique id. Nulla in risus vel lacus rutrum blandit. Mauris turpis mauris, hendrerit sed dignissim at, ultricies at nunc. Donec nec accumsan nisl. Aenean a ante ullamcorper, finibus leo vitae, molestie risus.
+                        <br/>Praesent id facilisis ligula, sed pulvinar justo. In rhoncus, dolor non tempor fringilla, felis velit fermentum est, nec luctus nisl lorem quis ligula. Proin at nulla lacinia, porttitor nibh vitae, dapibus ipsum. Suspendisse bibendum felis a leo mattis rutrum. Ut vitae tempor quam. Cras quis pulvinar est. Pellentesque sem lorem, porta vulputate sollicitudin id, dictum elementum quam. Proin nisl diam, rhoncus at tincidunt sed, porta id nunc. Fusce at ipsum id metus commodo venenatis sed et velit. Mauris ut nisl nisi. Nunc dolor lacus, sollicitudin sed pellentesque ut, elementum ac nisi. Donec dictum eu diam in molestie. Praesent ut leo et est gravida rhoncus.
+                        Nullam nec laoreet nibh, id lobortis sem. Mauris sit amet suscipit nibh. Cras luctus tempus mi, sit amet interdum mi hendrerit in. In in enim aliquet, pellentesque orci sit amet, molestie nibh. Etiam consectetur et justo ut scelerisque. Maecenas porttitor aliquet sapien dictum ultricies. Vestibulum nunc lectus, cursus nec posuere mattis, tincidunt a mauris. Sed tincidunt blandit turpis, sed egestas dui dictum fermentum.
+                        <br/>Maecenas malesuada lobortis magna, vel lobortis arcu rutrum id. Nullam auctor gravida justo sit amet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non ex tortor. Sed ultrices purus id congue ornare. Fusce quis commodo orci. Vivamus quis luctus sapien. Curabitur convallis aliquet sapien, et posuere sem hendrerit vitae. Cras pretium orci vel sem sagittis finibus. Sed faucibus, nulla id scelerisque efficitur, mauris lectus fermentum risus, cursus rutrum magna lacus in ligula. Ut non mattis turpis. Praesent ut urna ac nisi condimentum imperdiet.</p>
+                    <br/>
+                    <div class="mui--text-center">
+                        <button class="mui-btn"><a href="./orari"><i class="icon ion-ios-arrow-forward" aria-hidden="true"></i>&emsp;ORARI DEL MUSEO</a></button>
+                    </div>
+                </div>
                 <br/><br/>
-            </div>
-            <div class="mui-container-fluid padding">
+                <div class="mui-divider"></div>
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">DOCUMENTO DA PRESENTARE</div>
-                <br/>
-                <table class="mui-table mui-table--bordered">
-                    <thead>
-                        <tr>
-                            <th>Categoria</th>
-                            <th>Documento da presentare</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${categorie}" var="categorie">
-                            <tr>
-                                <td>${categorie.descrizione}</td>
-                                <td>${categorie.documento}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                <div class="padding">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacus libero, condimentum a efficitur vitae, finibus a quam. Mauris quis dolor nibh. Morbi ultrices tincidunt tellus, convallis tristique velit porttitor eu. Vivamus euismod venenatis velit ac laoreet. Sed rutrum luctus sem id ultrices. Sed volutpat interdum ipsum, vitae congue tellus tristique id. Nulla in risus vel lacus rutrum blandit. Mauris turpis mauris, hendrerit sed dignissim at, ultricies at nunc. Donec nec accumsan nisl. Aenean a ante ullamcorper, finibus leo vitae, molestie risus.</p>
+                    <br/>
+                    <div class="mui--text-center">
+                        <button class="mui-btn"><a href="./contatti"><i class="icon ion-ios-arrow-forward" aria-hidden="true"></i>&emsp;CONTATTA IL MUSEO</a></button>
+                    </div>
+                </div>
                 <br/><br/>
             </div>
             <div class="padding" id="footer">
@@ -187,7 +159,6 @@
                 <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
             </div>
         </div>
-
 
         <script>
             var modalEl = document.createElement('div');

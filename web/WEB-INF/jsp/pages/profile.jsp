@@ -21,6 +21,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -38,6 +39,8 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <!-- -->
+        <title>XXI Museum | Profilo</title>
     </head>
 
     <body>
@@ -105,33 +108,36 @@
             <div class="padding-container">
                 <div class="propic-wrapper">
                     <img class="propic" src="https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1987038/portrait_study_01.png"/>
-                    <a href="./editProfile" class="mui-btn mui-btn--fab mui-btn--danger edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
+                    <a href="./editProfile" class="mui-btn mui-btn--fab edit-profile-fab"><i class="icon ion-edit" aria-hidden="true"></i></a>
                 </div>
                 <div class="mui-panel profile-wrapper">
                     <h2>
-                        <% 
-                        Object nometmp = session.getAttribute("nome");
-                        String nome=(String) nometmp;
-                        Object cognometmp = session.getAttribute("cognome");
-                        String cognome=(String) cognometmp;
-                        out.print(nome+" "+cognome); 
+                        <%
+                            Object nometmp = session.getAttribute("nome");
+                            String nome = (String) nometmp;
+                            Object cognometmp = session.getAttribute("cognome");
+                            String cognome = (String) cognometmp;
+                            out.print(nome + " " + cognome);
                         %>
                     </h2>
                     <p>
-                        <% 
-                        Object emailtmp = session.getAttribute("email");
-                        String email=(String) emailtmp;
-                        out.print(email); 
+                        <%
+                            Object emailtmp = session.getAttribute("email");
+                            String email = (String) emailtmp;
+                            out.print(email);
                         %>
                     </p>
                     <p>
-                        <% 
-                        Object datatmp = session.getAttribute("dataDiNascita");
-                        Date data= (Date)datatmp;
-                        out.print(data); 
+                        <%
+                            Object datatmp = session.getAttribute("dataDiNascita");
+                            Date data = (Date) datatmp;
+                            out.print(data);
                         %>
                     </p>
                 </div>
+            </div>
+            <div id="home">
+                <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
             </div>
         </div>
 

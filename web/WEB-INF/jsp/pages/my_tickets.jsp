@@ -20,6 +20,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -37,6 +38,8 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="../resources/floating/mt.js"></script>
         <script src="../resources/static/script.js"></script>
+        <!-- -->
+        <title>XXI Museum | I miei biglietti</title>
     </head>
 
     <body>
@@ -81,7 +84,6 @@
                 <li><strong class="sidenav-disabled"><span class="sidenav-icon-text">Il museo</span></strong></li>
                 <li><a href="./storia"><strong><i class="icon ion-ios-pulse-strong" aria-hidden="true"></i><span class="sidenav-icon-text">La storia</span></strong></a></li>
                 <li><a href="./orari"><strong><i class="icon ion-clock" aria-hidden="true"></i><span class="sidenav-icon-text">Orari e info</span></strong></a></li>
-                <li><a href="./team"><strong><i class="fa fa-users" aria-hidden="true"></i><span class="sidenav-icon-text">Il team</span></strong></a></li>
                 <li><a href="./contatti"><strong><i class="icon ion-android-chat" aria-hidden="true"></i><span class="sidenav-icon-text">Contatti</span></strong></a></li>
             </ul>
         </div>
@@ -115,8 +117,13 @@
         <div id="content-wrapper">
             <div class="mui--appbar-height">
             </div>
-            <div class="mui-containet-fluid margin">
+            <div class="mui-container-fluid">
                 <br/><br/>
+                <div class="mui--text-headline mui--text-center ">BIGLIETTI ACQUISTATI</div>
+                <br/>
+            </div>
+            <div class="mui-containet-fluid margin">
+                <br/>
                 <div class="mui-row">
                     <c:if test="${col == 0}">
                         <div class="mui--text-center">Non hai ancora acquistato biglietti.</div>

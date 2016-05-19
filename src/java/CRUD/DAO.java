@@ -152,7 +152,7 @@ public class DAO {
             int y= query2.executeUpdate();
             session.getTransaction().commit();
             session.close();
-            if((x+y)==1)return 1;
+            if((x+y)==2)return 1;
             else return 0;
         } catch (Exception e) {
             return 0;
@@ -184,6 +184,16 @@ public class DAO {
         List<Esposizione> lista = query.list();
         return lista;
     }
+    // Interazione con la tabella Esposizioni
+    public static Esposizione getEsposizioneById(String id) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql = "FROM Esposizione WHERE codice = :cod";
+        Query query = session.createQuery(hql);
+        query.setParameter("cod", id);
+        List<Esposizione> lista = query.list();
+        return lista.get(0);
+    }
 
     public static List<Esposizione> getEsposizioniAv() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -206,6 +216,17 @@ public class DAO {
         List<Categoria> lista = query.list();
         return lista;
     }
+    // Interazione con la tabella Categorie
+    public static Categoria getCategoriaById(String cod) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql = "FROM Categoria WHERE codice = :cod";
+        Query query = session.createQuery(hql);
+        query.setParameter("cod", cod);
+        List<Categoria> lista = query.list();
+        return lista.get(0);
+    }
+    
     
     // Interazione con la tabella Categorie
     public static List<Servizioaggiuntivo> getServizi() {
