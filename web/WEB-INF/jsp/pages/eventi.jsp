@@ -41,13 +41,13 @@
                 if (null == session.getAttribute("username")) {
             %>
             <div id="sidedrawer-brand" class="mui--appbar-line-height">
-                <a id="sidedrawer-brand__title" href="./">XXI museum</a>
+                <a id="sidedrawer-brand__title" href="../index">XXI museum</a>
             </div>
             <%
             } else {
             %>   
             <div id="sidedrawer-brand" class="mui--appbar-line-height sidedrawer-brand--active">
-                <a id="sidedrawer-brand__title" href="./">XXI museum</a>
+                <a id="sidedrawer-brand__title" href="../index">XXI museum</a>
                 <div class="sidedrawer-brand__profile__gradient"></div>
                 <div id="sidedrawer-brand__profile" class="mui-row">
                     <div class="mui-col-xs-4 mui-col-md-3">
@@ -112,12 +112,14 @@
             </div>
             <div class="mui-container-fluid">
                 <br/><br/>
-                <div class="mui--text-headline mui--text-center ">BIGLIETTERIA DELLE ESPOSIZIONI IN CORSO O FUTURE</div>
+                <div class="mui--text-headline mui--text-center ">ESPOSIZIONI IN CORSO O FUTURE</div>
                 <br/>
                 <div class="mui--text-center">
                     <button class="mui-btn"><a href="./pages/biglietto_normale"><i class="icon ion-ios-arrow-forward" aria-hidden="true"></i>&emsp;ACQUISTA IL BIGLIETTO DI UN'ESPOSIZIONE</a></button>
                 </div>
                 <br/>
+                <div class="mui-divider"></div>
+                <br/><br/>
                 <div class="mui-containet-fluid margin">
                     <div class="mui-row">
                         <c:forEach items="${esposizioni}" var="esposizione">
@@ -144,6 +146,20 @@
                 <a href="../index"><button class="mui-btn mui-btn--fab mui-btn--small mui-btn--danger"><i class="icon ion-ios-home iconlarger1"></i></button></a>
             </div>
         </div>
+        <script>
+            var modalEl = document.createElement('div');
+            modalEl.style.width = '400px';
+            modalEl.style.margin = '100px auto';
+            modalEl.style.backgroundColor = '#fff';
+            modalEl.className = 'mui-panel padding';
+            var loginpanel = '<ul class="mui-tabs__bar mui-tabs__bar--justified"><li class="mui--is-active mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Login</a></li><li class="mui--text-center"><a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Registrati</a></li></ul><br/><div class="mui-tabs__pane mui--is-active" id="pane-justified-1"><form method="get" action="./login"><div class="mui-textfield" required><input type="text" name="username" maxlength="5"required><label>Username</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><button type="submit" class="mui-btn mui-btn--raised">ENTRA</button></form></div><div class="mui-tabs__pane" id="pane-justified-2"><form><div class="mui-textfield" required><input type="text" name="username" maxlength="5"><label>Username</label></div><div class="mui-textfield" required><input type="text" name="nome" required><label>Nome</label></div><div class="mui-textfield" required><input type="text" name="cognome" required><label>Cognome</label></div><div class="mui-textfield" required><input type="email" name="email" required><label>Email</label></div><div class="mui-textfield" required><input type="date" name="dataDiNascita" required><label>Data di nascita</label></div><div class="mui-textfield" required><input type="password" name="password" required><label>Password</label></div><div class="mui-textfield" required><input type="password" name="password2" required><label>Conferma la password</label></div><button type="submit" class="mui-btn mui-btn--raised">REGISTRATI</button></form></div>';
+            modalEl.innerHTML = loginpanel;
+            console.log(loginpanel);
+            console.log(modalEl);
+            function activateModal() {
+                mui.overlay('on', modalEl);
+            }
+        </script>
     </body>
 </html>
 

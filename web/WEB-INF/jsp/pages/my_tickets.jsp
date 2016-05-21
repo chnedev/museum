@@ -20,7 +20,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="icon" href="../resources/img/favicon.ico"/>
+        <link rel="icon" href="../resources/img/favicon.ico"/>
         <!--fonts-->
         <link href='https://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
@@ -121,35 +121,29 @@
                 <br/><br/>
                 <div class="mui--text-headline mui--text-center ">BIGLIETTI ACQUISTATI</div>
                 <br/>
-            </div>
-            <div class="mui-containet-fluid margin">
                 <br/>
-                <div class="mui-row">
-                    <c:if test="${col == 0}">
-                        <div class="mui--text-center">Non hai ancora acquistato biglietti.</div>
-                    </c:if>
-                    <c:forEach items="${biglietti}" var="biglietto">
-                        <c:if test="${col == 3}">
-                            <div class="mui-col-md-4">
-                            </c:if>
-                            <c:if test="${col == 2}">
-                                <div class="mui-col-md-6">
-                                </c:if>
-                                <div class="cover-card mui--z1"></div> <br/>
-                                <div class="mui-panel white mui--z2">
-                                    <div class="mui-container-fluid">
-                                        <div class="mui--text-title mui--text-center uppercase">Biglietto ${biglietto.codice}</div><br/>
-                                        <div class="mui-divider"></div><br/>
-                                        <div class="card-date mui--text-center">Categoria biglietto: ${biglietto.codiceCategoria.getDescrizione()}</div>
-
-                                    </div>
-                                </div>
-                            </div>
+                <table class="mui-table mui-table--bordered">
+                    <thead>
+                        <tr>
+                            <th>Codice biglietto</th>
+                            <th>Categoria</th>
+                            <th>Titolo esposizione</th>
+                            <th>Data di validit&agrave;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${biglietti}" var="biglietto">
+                            <tr>
+                                <td>${biglietto.codice}</td>
+                                <td>${biglietto.codiceCategoria.getDescrizione()}</td>
+                                <td>${biglietto.titoloEsposizione.getTitolo()}</td>
+                                <td>${biglietto.dataDiValidita}</td>
+                            </tr>
                         </c:forEach>
-                    </div>
-                    <br/><br/>
-                </div>
+                    </tbody>
+                </table>
             </div>
+
             <div class="mui-container-fluid">
                 <br/><br/>
             </div>

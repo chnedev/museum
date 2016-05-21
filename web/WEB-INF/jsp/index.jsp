@@ -182,6 +182,8 @@
                         <a href="#"><i class="icon ion-social-facebook iconlarger whitefont facebook"></i></a>
                         &emsp;&emsp;&emsp;
                         <a href="#"><i class="icon ion-social-googleplus iconlarger whitefont googleplus"></i></a>
+                        <br/><hr/>
+                        XXI Museum &emsp; | &emsp; Copyright &copy;
                         <br/><br/>
                     </div>
                 </div>

@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="mui-tabs__pane" id="pane-justified-2">
-                                <form method="post" action="./registrazione">
+                                <form method="get" action="./registrazione">
                                     <div class="mui-textfield">
                                         <input type="text" name="username" required>
                                         <label>Username</label>

@@ -107,7 +107,7 @@ public class Main{
         return "pages/logout";
     }
 
-    @RequestMapping(value = "/pages/registrazione", method = RequestMethod.POST)
+    @RequestMapping(value = "/pages/registrazione", method = RequestMethod.GET)
     public String registrazione(ModelMap map,
             @RequestParam(value = "username") String id,
             @RequestParam(value = "nome") String nome,
